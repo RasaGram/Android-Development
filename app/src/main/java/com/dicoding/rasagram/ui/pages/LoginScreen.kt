@@ -11,13 +11,17 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -27,6 +31,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -47,7 +52,10 @@ fun LoginScreen(){
     var password by remember { mutableStateOf("") }
 
     Surface(
-        modifier = Modifier.fillMaxSize().background(Color.White).padding(16.dp)
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.White)
+            .padding(16.dp)
     ){
         Column(
             modifier = Modifier.fillMaxSize(),
@@ -100,18 +108,47 @@ fun LoginScreen(){
                     OutlinedTextField(
                         value = username,
                         onValueChange = { username = it },
-                        label = { Text("Username") },
+                        label = {
+                            Text(
+                                text = "Username",
+                                style = TextStyle(
+                                    fontFamily = arialFamily,
+                                    fontWeight = FontWeight.Bold,
+                                    color = Orange, // Ubah warna teks
+                                    fontSize = 12.sp // Ubah ukuran teks
+                                )
+                            )
+                        },
                         modifier = Modifier.fillMaxWidth(),
                         shape = RoundedCornerShape(7.dp),
                         colors = TextFieldDefaults.outlinedTextFieldColors(
                             focusedBorderColor = Color.Blue,
                             unfocusedBorderColor = Orange
-                        )
+                        ),
+                        leadingIcon = {
+                            // Icon di sisi kiri teks
+                            Icon(
+                                painter = painterResource(id = R.drawable.email),
+                                contentDescription = "Username Icon",
+                                modifier = Modifier.size(20.dp),
+                                tint = Orange
+                            )
+                        }
                     )
                     OutlinedTextField(
                         value = password,
                         onValueChange = { password = it },
-                        label = { Text("Password") },
+                        label = {
+                            Text(
+                                text = "Password",
+                                style = TextStyle(
+                                    fontFamily = arialFamily,
+                                    fontWeight = FontWeight.Bold,
+                                    color = Orange, // Ubah warna teks
+                                    fontSize = 12.sp // Ubah ukuran teks
+                                )
+                            )
+                        },
                         modifier = Modifier.fillMaxWidth(),
                         shape = RoundedCornerShape(7.dp),
                         visualTransformation = PasswordVisualTransformation(),
@@ -119,10 +156,47 @@ fun LoginScreen(){
                         colors = TextFieldDefaults.outlinedTextFieldColors(
                             focusedBorderColor = Color.Blue,
                             unfocusedBorderColor = Orange
-                        )
+                        ),
+                        leadingIcon = {
+                            Icon(
+                                painter = painterResource(id = R.drawable.password),
+                                contentDescription = "Username Icon",
+                                modifier = Modifier.size(20.dp),
+                                tint = Orange
+                            )
+                        }
                     )
-                    Button(onClick = { /* login logic here */ }) {
-                        Text("Login")
+                    Spacer(modifier = Modifier.height(40.dp))
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center
+                    ) {
+                        Button(
+                            onClick = { /* login logic here */ },
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(51.23.dp),
+                            shape = RoundedCornerShape(7.dp),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = Orange,
+                                contentColor = Color.White
+                            )
+                        ) {
+                            Text(stringResource(R.string.login))
+                        }
+                        Spacer(modifier = Modifier.height(16.dp))
+                        TextButton(
+                            onClick = { /*TODO*/ }) {
+                            Text(
+                                text = "Don’t have account? Sign up",
+                                style = TextStyle(
+                                    fontSize = 12.sp,
+                                    fontWeight = FontWeight.Normal,
+                                    color = Color.Black,
+                                    fontFamily = arialFamily
+                                )
+                            )
+                        }
                     }
                 }
             }
