@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "207917620089",
+    "project_id": "rasagram-26fb8",
+    "storage_bucket": "rasagram-26fb8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:207917620089:android:75c928ebceb520e6a72da8",
+        "android_client_info": {
+          "package_name": "com.dicoding.rasagram"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAjVs9h_m6t6q2qKMJxEoL0uNtjEaMAms"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

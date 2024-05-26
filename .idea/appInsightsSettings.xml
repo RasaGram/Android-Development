@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.dicoding.rasagram" />
+                  <option name="mobileSdkAppId" value="1:207917620089:android:75c928ebceb520e6a72da8" />
+                  <option name="projectId" value="rasagram-26fb8" />
+                  <option name="projectNumber" value="207917620089" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
