@@ -6,4 +6,8 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
+    <string name="do_you_have_account_sign_in">Do you have account ? Sign in</string>
+    <string name="Galeri">Galeri</string>
+    <string name="Camera">Camera</string>
+    <string name="Scan">Scan</string>
 </resources>

@@ -48,7 +48,7 @@ import com.dicoding.rasagram.ui.theme.poppinsFamily
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginScreen(){
-    var username by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
     Surface(
@@ -106,16 +106,16 @@ fun LoginScreen(){
                         )
                     )
                     OutlinedTextField(
-                        value = username,
-                        onValueChange = { username = it },
+                        value = email,
+                        onValueChange = { email = it },
                         label = {
                             Text(
-                                text = "Username",
+                                text = "Email",
                                 style = TextStyle(
                                     fontFamily = arialFamily,
                                     fontWeight = FontWeight.Bold,
-                                    color = Orange, // Ubah warna teks
-                                    fontSize = 12.sp // Ubah ukuran teks
+                                    color = Orange,
+                                    fontSize = 12.sp
                                 )
                             )
                         },
@@ -126,10 +126,9 @@ fun LoginScreen(){
                             unfocusedBorderColor = Orange
                         ),
                         leadingIcon = {
-                            // Icon di sisi kiri teks
                             Icon(
                                 painter = painterResource(id = R.drawable.email),
-                                contentDescription = "Username Icon",
+                                contentDescription = "Email Icon",
                                 modifier = Modifier.size(20.dp),
                                 tint = Orange
                             )
