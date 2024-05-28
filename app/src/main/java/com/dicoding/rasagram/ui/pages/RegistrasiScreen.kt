@@ -10,8 +10,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -39,6 +41,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.dicoding.rasagram.R
+import com.dicoding.rasagram.ui.model.Validator
 import com.dicoding.rasagram.ui.theme.Orange
 import com.dicoding.rasagram.ui.theme.arialFamily
 import com.dicoding.rasagram.ui.theme.poppinsFamily
@@ -50,6 +53,12 @@ fun RegistrasiScreen(){
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
+    var usernameError by remember { mutableStateOf("") }
+    var emailError by remember { mutableStateOf("") }
+    var passwordError by remember { mutableStateOf("") }
+
+    val scrollState = rememberScrollState()
+
     Surface(
         modifier = Modifier
             .fillMaxSize()
@@ -57,7 +66,7 @@ fun RegistrasiScreen(){
             .padding(16.dp)
     ){
         Column(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier.fillMaxSize().verticalScroll(scrollState),
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -108,7 +117,10 @@ fun RegistrasiScreen(){
             }
             OutlinedTextField(
                 value = username,
-                onValueChange = { username = it },
+                onValueChange = {
+                    username = it
+                    val validationResult = Validator.validateUsername(it)
+                    usernameError = if (validationResult.status) "" else "Username must be at least 4 characters long" },
                 label = {
                     Text(
                         text = "Username",
@@ -123,22 +135,32 @@ fun RegistrasiScreen(){
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(7.dp),
                 colors = TextFieldDefaults.outlinedTextFieldColors(
-                    focusedBorderColor = Color.Blue,
+                    focusedBorderColor = Orange,
                     unfocusedBorderColor = Orange
                 ),
                 leadingIcon = {
-                    // Icon di sisi kiri teks
                     Icon(
                         painter = painterResource(id = R.drawable.username),
                         contentDescription = "Username Icon",
                         modifier = Modifier.size(20.dp),
                         tint = Orange
                     )
-                }
+                },
+                isError = usernameError.isNotEmpty()
             )
+            if (usernameError.isNotEmpty()) {
+                Text(
+                    text = usernameError,
+                    color = Color.Red,
+                    style = TextStyle(fontSize = 12.sp)
+                )
+            }
             OutlinedTextField(
                 value = email,
-                onValueChange = { email = it },
+                onValueChange = {
+                    email = it
+                    val validationResult = Validator.validateEmail(it)
+                    emailError = if (validationResult.status) "" else "Email must end with @gmail.com" },
                 label = {
                     Text(
                         text = "Email",
@@ -153,7 +175,7 @@ fun RegistrasiScreen(){
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(7.dp),
                 colors = TextFieldDefaults.outlinedTextFieldColors(
-                    focusedBorderColor = Color.Blue,
+                    focusedBorderColor = Orange,
                     unfocusedBorderColor = Orange
                 ),
                 leadingIcon = {
@@ -163,11 +185,22 @@ fun RegistrasiScreen(){
                         modifier = Modifier.size(20.dp),
                         tint = Orange
                     )
-                }
+                },
+                isError = emailError.isNotEmpty()
             )
+            if (emailError.isNotEmpty()) {
+                Text(
+                    text = emailError,
+                    color = Color.Red,
+                    style = TextStyle(fontSize = 12.sp)
+                )
+            }
             OutlinedTextField(
                 value = password,
-                onValueChange = { password = it },
+                onValueChange = {
+                    password = it
+                    val validationResult = Validator.validatePassword(it)
+                    passwordError = if (validationResult.status) "" else "Password must be at least 8 characters long"},
                 label = {
                     Text(
                         text = "Password",
@@ -184,7 +217,7 @@ fun RegistrasiScreen(){
                 visualTransformation = PasswordVisualTransformation(),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
                 colors = TextFieldDefaults.outlinedTextFieldColors(
-                    focusedBorderColor = Color.Blue,
+                    focusedBorderColor = Orange,
                     unfocusedBorderColor = Orange
                 ),
                 leadingIcon = {
@@ -194,15 +227,35 @@ fun RegistrasiScreen(){
                         modifier = Modifier.size(20.dp),
                         tint = Orange
                     )
-                }
+                },
+                isError = passwordError.isNotEmpty()
             )
+            if (passwordError.isNotEmpty()) {
+                Text(
+                    text = passwordError,
+                    color = Color.Red,
+                    style = TextStyle(fontSize = 12.sp)
+                )
+            }
             Spacer(modifier = Modifier.height(40.dp))
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
                 Button(
-                    onClick = { /* login logic here */ },
+                    onClick = {
+                        val isUsernameValid = Validator.validateUsername(username).status
+                        val isEmailValid = Validator.validateEmail(email).status
+                        val isPasswordValid = Validator.validatePassword(password).status
+
+                        if (isUsernameValid && isEmailValid && isPasswordValid) {
+                            // Login logic here
+                        } else {
+                            if (!isUsernameValid) usernameError = "Username must be at least 6 characters long"
+                            if (!isEmailValid) emailError = "Email cannot be empty"
+                            if (!isPasswordValid) passwordError = "Password must be at least 8 characters long"
+                        }
+                              },
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(51.23.dp),
@@ -212,7 +265,7 @@ fun RegistrasiScreen(){
                         contentColor = Color.White
                     )
                 ) {
-                    Text(stringResource(R.string.login))
+                    Text(stringResource(R.string.Register))
                 }
                 Spacer(modifier = Modifier.height(16.dp))
                 TextButton(

@@ -47,7 +47,7 @@ import com.dicoding.rasagram.ui.theme.poppinsFamily
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginScreen(){
+fun LoginScreen(isEnabled : Boolean = false){
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
@@ -122,7 +122,7 @@ fun LoginScreen(){
                         modifier = Modifier.fillMaxWidth(),
                         shape = RoundedCornerShape(7.dp),
                         colors = TextFieldDefaults.outlinedTextFieldColors(
-                            focusedBorderColor = Color.Blue,
+                            focusedBorderColor = Orange,
                             unfocusedBorderColor = Orange
                         ),
                         leadingIcon = {
@@ -153,7 +153,7 @@ fun LoginScreen(){
                         visualTransformation = PasswordVisualTransformation(),
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
                         colors = TextFieldDefaults.outlinedTextFieldColors(
-                            focusedBorderColor = Color.Blue,
+                            focusedBorderColor = Orange,
                             unfocusedBorderColor = Orange
                         ),
                         leadingIcon = {
@@ -179,7 +179,7 @@ fun LoginScreen(){
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = Orange,
                                 contentColor = Color.White
-                            )
+                            ),
                         ) {
                             Text(stringResource(R.string.login))
                         }
