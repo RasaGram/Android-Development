@@ -1,6 +1,7 @@
 package com.dicoding.rasagram.ui.pages
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -17,8 +18,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -48,7 +51,7 @@ fun DetailResepScreen(){
                     )
             Spacer(modifier = Modifier.height(25.dp))
             Text(
-                text = "Sayur Sop",
+                text = "Nama Masakan",
                 style = TextStyle(
                     fontSize = 24.sp,
                     fontWeight = FontWeight.Bold,
@@ -57,7 +60,74 @@ fun DetailResepScreen(){
                 ),
                 modifier = Modifier.align(Alignment.Start)
             )
-            
+            Spacer(modifier = Modifier.height(10.dp))
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth() // Adjust height as needed
+                    .clip(RoundedCornerShape(8.dp))
+                    .border(1.dp, Color.Gray, shape = RoundedCornerShape(8.dp)) // Border
+                    .background(Color.White)
+                    .padding(16.dp),
+                contentAlignment = Alignment.CenterStart
+            ) {
+                Column (modifier = Modifier,
+                    verticalArrangement = Arrangement.Top,
+                    horizontalAlignment = Alignment.Start)
+                {
+
+                    Text(
+                        text = "Bahan-bahan", // Your text here
+                        style = TextStyle(
+                            fontSize = 16.sp,
+                            color = Color.Black,
+                            fontWeight = Bold,
+                            fontFamily = poppinsFamily
+                        )
+                    )
+                    Text(
+                        text = "bahan", // Your text here
+                        style = TextStyle(
+                            fontSize = 16.sp,
+                            color = Color.Black,
+                            fontFamily = poppinsFamily
+                        )
+                    )
+                }
+            }
+            Spacer(modifier = Modifier.height(10.dp))
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth() // Adjust height as needed
+                    .clip(RoundedCornerShape(8.dp))
+                    .border(1.dp, Color.Gray, shape = RoundedCornerShape(8.dp)) // Border
+                    .background(Color.White)
+                    .padding(16.dp),
+                contentAlignment = Alignment.CenterStart
+            ) {
+                Column (modifier = Modifier,
+                    verticalArrangement = Arrangement.Top,
+                    horizontalAlignment = Alignment.Start)
+                {
+
+                    Text(
+                        text = "Cara Memasak", // Your text here
+                        style = TextStyle(
+                            fontSize = 16.sp,
+                            color = Color.Black,
+                            fontWeight = Bold,
+                            fontFamily = poppinsFamily
+                        )
+                    )
+                    Text(
+                        text = "tahap ", // Your text here
+                        style = TextStyle(
+                            fontSize = 16.sp,
+                            color = Color.Black,
+                            fontFamily = poppinsFamily
+                        )
+                    )
+                }
+            }
         }
     }
 }
