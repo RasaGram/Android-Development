@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.dicoding.rasagram.ui.pages.LoginScreen
+import com.dicoding.rasagram.ui.pages.MainScreen
 import com.dicoding.rasagram.ui.pages.RegistrasiScreen
 import com.dicoding.rasagram.ui.pages.SplashScreen
 
@@ -13,7 +14,8 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            RegistrasiScreen()
+                MainScreen()
+//            RegistrasiScreen()
 //            LoginScreen()
 //            SplashScreen()
         }
