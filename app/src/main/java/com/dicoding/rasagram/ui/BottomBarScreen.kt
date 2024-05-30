@@ -5,11 +5,13 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
+import com.dicoding.rasagram.R
 
 sealed class BottomBarScreen (
     val route: String,
     val title: String,
-    val icon: ImageVector
+    val icon: Any
 ) {
     object Home: BottomBarScreen(
         route = "home",
@@ -19,7 +21,7 @@ sealed class BottomBarScreen (
     object Scan: BottomBarScreen(
         route = "scan",
         title = "Scan",
-        icon = Icons.Default.Search
+        icon = R.drawable.ic_camera
     )
     object Profile: BottomBarScreen(
         route = "profile",
