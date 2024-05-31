@@ -40,15 +40,17 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.dicoding.rasagram.R
-import com.dicoding.rasagram.ui.model.Validator
+import com.dicoding.rasagram.ui.service.Validator
 import com.dicoding.rasagram.ui.theme.Orange
 import com.dicoding.rasagram.ui.theme.arialFamily
 import com.dicoding.rasagram.ui.theme.poppinsFamily
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RegistrasiScreen(){
+fun RegistrasiScreen(navController: NavHostController) {
     var username by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -66,7 +68,9 @@ fun RegistrasiScreen(){
             .padding(16.dp)
     ){
         Column(
-            modifier = Modifier.fillMaxSize().verticalScroll(scrollState),
+            modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(scrollState),
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -249,7 +253,7 @@ fun RegistrasiScreen(){
                         val isPasswordValid = Validator.validatePassword(password).status
 
                         if (isUsernameValid && isEmailValid && isPasswordValid) {
-                            // Login logic here
+                            navController.navigate("LoginScreen")
                         } else {
                             if (!isUsernameValid) usernameError = "Username must be at least 6 characters long"
                             if (!isEmailValid) emailError = "Email cannot be empty"
@@ -269,7 +273,9 @@ fun RegistrasiScreen(){
                 }
                 Spacer(modifier = Modifier.height(16.dp))
                 TextButton(
-                    onClick = { /*TODO*/ }) {
+                    onClick = {
+                        navController.navigate("LoginScreen")
+                    }) {
                     Text(
                         text = stringResource(R.string.do_you_have_account_sign_in),
                         style = TextStyle(
@@ -288,5 +294,5 @@ fun RegistrasiScreen(){
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun RegistrasiScreenPreview(){
-    RegistrasiScreen()
+    RegistrasiScreen(navController = rememberNavController())
 }

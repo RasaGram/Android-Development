@@ -1,4 +1,4 @@
-package com.dicoding.rasagram.ui.model
+package com.dicoding.rasagram.ui.service
 
 object Validator {
     fun validateUsername(fName:String) : ValidationResult {

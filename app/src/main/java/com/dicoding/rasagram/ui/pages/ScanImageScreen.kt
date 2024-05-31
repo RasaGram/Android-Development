@@ -47,7 +47,13 @@ fun ScanImagePage(){
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Top
         ) {
-            Image(painter = painterResource(id = R.drawable.scan), contentDescription = "Splash Screen" )
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                contentAlignment = Alignment.Center
+            ){
+                Image(painter = painterResource(id = R.drawable.scan), contentDescription = "Splash Screen" )
+            }
             Spacer(modifier = Modifier.height(11.dp))
             Row(
                 modifier = Modifier
@@ -91,7 +97,8 @@ fun ScanImagePage(){
                 onClick = { /* login logic here */ },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(51.23.dp),
+                    .height(51.23.dp)
+                    .padding(horizontal = 5.dp),
                 shape = RoundedCornerShape(7.dp),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Orange,

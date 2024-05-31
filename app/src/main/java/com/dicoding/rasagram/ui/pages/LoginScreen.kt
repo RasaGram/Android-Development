@@ -1,8 +1,6 @@
 package com.dicoding.rasagram.ui.pages
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -40,6 +38,9 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.dicoding.rasagram.R
 import com.dicoding.rasagram.ui.theme.Orange
 import com.dicoding.rasagram.ui.theme.arialFamily
@@ -47,7 +48,7 @@ import com.dicoding.rasagram.ui.theme.poppinsFamily
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginScreen(isEnabled : Boolean = false){
+fun LoginScreen(navController: NavController){
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
@@ -171,7 +172,9 @@ fun LoginScreen(isEnabled : Boolean = false){
                         verticalArrangement = Arrangement.Center
                     ) {
                         Button(
-                            onClick = { /* login logic here */ },
+                            onClick = {
+                                navController.navigate("HomepageScreen")
+                            },
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .height(51.23.dp),
@@ -185,7 +188,9 @@ fun LoginScreen(isEnabled : Boolean = false){
                         }
                         Spacer(modifier = Modifier.height(16.dp))
                         TextButton(
-                            onClick = { /*TODO*/ }) {
+                            onClick = {
+                                navController.navigate("RegistrationScreen")
+                            }) {
                             Text(
                                 text = "Don’t have account? Sign up",
                                 style = TextStyle(
@@ -206,5 +211,5 @@ fun LoginScreen(isEnabled : Boolean = false){
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun LoginScreenPreview(){
-    LoginScreen()
+    LoginScreen(navController = rememberNavController())
 }
