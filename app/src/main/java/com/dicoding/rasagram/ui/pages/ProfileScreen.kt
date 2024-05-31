@@ -37,6 +37,7 @@ import androidx.compose.ui.unit.sp
 import com.dicoding.rasagram.ui.theme.Black
 import com.dicoding.rasagram.ui.theme.Orange
 import com.dicoding.rasagram.ui.theme.arialFamily
+import com.dicoding.rasagram.ui.theme.poppinsFamily
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -90,7 +91,7 @@ fun ProfileScreen() {
                     Text(
                         text = "Username", //Filled with real username
                         style = TextStyle(
-                            fontFamily = arialFamily,
+                            fontFamily = poppinsFamily,
                             fontWeight = FontWeight.Bold,
                             color = Black,
                             fontSize = 12.sp

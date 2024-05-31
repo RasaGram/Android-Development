@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 package com.dicoding.rasagram.ui.service
+=======
+ package com.dicoding.rasagram.ui.service
+>>>>>>> Stashed changes
 
 object Validator {
     fun validateUsername(fName:String) : ValidationResult {

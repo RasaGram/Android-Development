@@ -22,13 +22,16 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -38,19 +41,34 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+<<<<<<< Updated upstream
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+=======
+import androidx.hilt.navigation.compose.hiltViewModel
+>>>>>>> Stashed changes
 import com.dicoding.rasagram.R
+import com.dicoding.rasagram.presentation.login_screen.SignInViewModel
 import com.dicoding.rasagram.ui.theme.Orange
 import com.dicoding.rasagram.ui.theme.arialFamily
 import com.dicoding.rasagram.ui.theme.poppinsFamily
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
+<<<<<<< Updated upstream
 fun LoginScreen(navController: NavController){
+=======
+fun LoginScreen(
+    isEnabled : Boolean = false,
+    viewModel: SignInViewModel = hiltViewModel()
+){
+>>>>>>> Stashed changes
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    val scope = rememberCoroutineScope()
+    val context = LocalContext.current
+    val state = viewModel.signInState.collectAsState(initial = null)
 
     Surface(
         modifier = Modifier
@@ -173,7 +191,11 @@ fun LoginScreen(navController: NavController){
                     ) {
                         Button(
                             onClick = {
+<<<<<<< Updated upstream
 //                                navController.navigate("HomepageScreen")
+=======
+                                      viewModel.loginUser(email, password)
+>>>>>>> Stashed changes
                             },
                             modifier = Modifier
                                 .fillMaxWidth()
