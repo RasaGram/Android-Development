@@ -41,13 +41,10 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-<<<<<<< Updated upstream
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-=======
-import androidx.hilt.navigation.compose.hiltViewModel
->>>>>>> Stashed changes
 import com.dicoding.rasagram.R
 import com.dicoding.rasagram.presentation.login_screen.SignInViewModel
 import com.dicoding.rasagram.ui.theme.Orange
@@ -56,14 +53,10 @@ import com.dicoding.rasagram.ui.theme.poppinsFamily
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-<<<<<<< Updated upstream
-fun LoginScreen(navController: NavController){
-=======
 fun LoginScreen(
-    isEnabled : Boolean = false,
+    navController: NavHostController,
     viewModel: SignInViewModel = hiltViewModel()
 ){
->>>>>>> Stashed changes
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
@@ -191,11 +184,7 @@ fun LoginScreen(
                     ) {
                         Button(
                             onClick = {
-<<<<<<< Updated upstream
-//                                navController.navigate("HomepageScreen")
-=======
                                       viewModel.loginUser(email, password)
->>>>>>> Stashed changes
                             },
                             modifier = Modifier
                                 .fillMaxWidth()
