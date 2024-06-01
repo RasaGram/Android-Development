@@ -35,17 +35,18 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.dicoding.rasagram.presentation.login_screen.SignInViewModel
+import com.dicoding.rasagram.presentation.signup_screen.SignUpViewModel
+import com.dicoding.rasagram.ui.service.Screens
 import com.dicoding.rasagram.ui.theme.Black
 import com.dicoding.rasagram.ui.theme.Orange
-import com.dicoding.rasagram.ui.theme.arialFamily
 import com.dicoding.rasagram.ui.theme.poppinsFamily
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ProfileScreen(viewModel : SignInViewModel= hiltViewModel(), navController: NavController) {
+fun ProfileScreen(viewModel : SignInViewModel= hiltViewModel(), navController: NavHostController) {
     var username by remember { mutableStateOf("") }
     Surface {
         Column(

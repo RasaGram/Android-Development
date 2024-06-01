@@ -6,4 +6,5 @@ sealed class Screens(val route : String) {
     object HomePageScreen : Screens("HomePage")
     object SplashScreen : Screens("Splash")
     object MainScreen : Screens("MainScreen")
+    object ProfileScreen : Screens("ProfileScreen")
 }

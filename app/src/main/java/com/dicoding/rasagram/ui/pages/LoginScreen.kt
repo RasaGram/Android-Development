@@ -48,15 +48,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.dicoding.rasagram.R
 import com.dicoding.rasagram.presentation.login_screen.SignInViewModel
+import com.dicoding.rasagram.ui.service.Screens
 import com.dicoding.rasagram.ui.theme.Orange
 import com.dicoding.rasagram.ui.theme.arialFamily
 import com.dicoding.rasagram.ui.theme.poppinsFamily
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -214,7 +213,7 @@ fun LoginScreen(
                         Spacer(modifier = Modifier.height(16.dp))
                         TextButton(
                             onClick = {
-                                navController.navigate("Register")
+                                navController.navigate(Screens.RegisterScreen.route)
                             }) {
                             Text(
                                 text = "Don’t have account? Sign up",
