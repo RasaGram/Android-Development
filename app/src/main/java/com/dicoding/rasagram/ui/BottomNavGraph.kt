@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.dicoding.rasagram.ui.pages.HomepageScreen
 import com.dicoding.rasagram.ui.pages.ProfileScreen
 import com.dicoding.rasagram.ui.pages.ScanImagePage
@@ -21,7 +22,7 @@ fun BottomNavGraph(navController: NavHostController){
             ScanImagePage()
         }
         composable(route = BottomBarScreen.Profile.route){
-            ProfileScreen()
+            ProfileScreen(navController = rememberNavController())
         }
     }
 }

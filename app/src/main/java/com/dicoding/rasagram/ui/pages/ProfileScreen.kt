@@ -34,6 +34,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import com.dicoding.rasagram.presentation.login_screen.SignInViewModel
 import com.dicoding.rasagram.ui.theme.Black
 import com.dicoding.rasagram.ui.theme.Orange
 import com.dicoding.rasagram.ui.theme.arialFamily
@@ -41,7 +45,7 @@ import com.dicoding.rasagram.ui.theme.poppinsFamily
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ProfileScreen() {
+fun ProfileScreen(viewModel : SignInViewModel= hiltViewModel(), navController: NavController) {
     var username by remember { mutableStateOf("") }
     Surface {
         Column(
@@ -122,9 +126,11 @@ fun ProfileScreen() {
             ) {
                 Text(text = "Save")
             }
-            Spacer(modifier = Modifier.height(200.dp))
+            Spacer(modifier = Modifier.height(120.dp))
             Button(
-                onClick = { /* login logic here */ },
+                onClick = {
+                    viewModel.logout(navController)
+                },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(51.23.dp)
@@ -137,7 +143,6 @@ fun ProfileScreen() {
             ) {
                 Text(text = "LogOut")
             }
-
         }
     }
 }
@@ -145,5 +150,5 @@ fun ProfileScreen() {
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun ProfileScreenPreview() {
-    ProfileScreen()
+    ProfileScreen(navController = rememberNavController())
 }

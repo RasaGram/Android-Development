@@ -1,5 +1,7 @@
 package com.dicoding.rasagram.ui.pages
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -61,7 +63,8 @@ import kotlinx.coroutines.launch
 @Composable
 fun LoginScreen(
     navController: NavHostController,
-    viewModel: SignInViewModel = hiltViewModel()
+    viewModel: SignInViewModel = hiltViewModel(),
+    sharedPreferences: SharedPreferences = LocalContext.current.getSharedPreferences("my_app_prefs", Context.MODE_PRIVATE)
 ){
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -190,7 +193,7 @@ fun LoginScreen(
                     ) {
                         Button(
                             onClick = {
-                                      viewModel.loginUser(email, password)
+                                viewModel.loginUser(email, password)
                             },
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -228,6 +231,8 @@ fun LoginScreen(
                                 if (state.value?.isSuccess?.isNotEmpty() == true) {
                                     val success = state.value?.isSuccess
                                     Toast.makeText(context, "${success}", Toast.LENGTH_LONG).show()
+                                    // Simpan status login ke Shared Preferences saat login berhasil
+                                    sharedPreferences.edit().putBoolean("is_logged_in", true).apply()
                                     navController.navigate("MainScreen")
                                 }
                             }
