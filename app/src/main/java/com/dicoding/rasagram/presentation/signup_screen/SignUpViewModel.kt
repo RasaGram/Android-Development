@@ -5,29 +5,31 @@ import androidx.lifecycle.viewModelScope
 import com.dicoding.rasagram.data.AuthRepository
 import com.dicoding.rasagram.presentation.login_screen.SignInState
 import com.dicoding.rasagram.util.Resource
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class SignUnViewModel @Inject constructor(
+@HiltViewModel
+class SignUpViewModel @Inject constructor(
     private val repository: AuthRepository
 ): ViewModel(){
 
-    val _signUnState = Channel<SignInState>()
-    val signUnState = _signUnState.receiveAsFlow()
+    val _signUpState = Channel<SignInState>()
+    val signUpState = _signUpState.receiveAsFlow()
 
     fun registerUser(email:String, password:String) = viewModelScope.launch {
-        repository.loginUser(email,password).collect{result ->
+        repository.registerUser(email,password).collect{result ->
             when(result) {
                 is Resource.Success ->{
-                    _signUnState.send(SignInState(isSuccess = "Sign In Success"))
+                    _signUpState.send(SignInState(isSuccess = "Sign In Success"))
                 }
                 is Resource.Loading ->{
-                    _signUnState.send(SignInState(isLoading = true))
+                    _signUpState.send(SignInState(isLoading = true))
                 }
                 is Resource.Error -> {
-                    _signUnState.send(SignInState(isError = result.message))
+                    _signUpState.send(SignInState(isError = result.message))
                 }
             }
         }

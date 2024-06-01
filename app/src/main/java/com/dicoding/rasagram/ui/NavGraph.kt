@@ -12,7 +12,7 @@ import com.dicoding.rasagram.ui.pages.SplashScreen
 import com.dicoding.rasagram.ui.service.Screens
 
 @Composable
-fun Nav(contorller: NavController){
+fun Nav(controller: NavController){
 
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = Screens.SplashScreen.route){
