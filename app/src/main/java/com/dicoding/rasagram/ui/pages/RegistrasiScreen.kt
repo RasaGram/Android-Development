@@ -258,7 +258,7 @@ fun RegistrasiScreen(navController: NavHostController,
             ) {
                 Button(
                     onClick = {
-
+                        viewModel.registerUser(email, password)
 //                        val isUsernameValid = Validator.validateUsername(username).status
 //                        val isEmailValid = Validator.validateEmail(email).status
 //                        val isPasswordValid = Validator.validatePassword(password).status

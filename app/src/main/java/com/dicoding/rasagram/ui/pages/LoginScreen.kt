@@ -201,7 +201,7 @@ fun LoginScreen(
                         Spacer(modifier = Modifier.height(16.dp))
                         TextButton(
                             onClick = {
-                                navController.navigate("RegistrationScreen")
+                                navController.navigate("Register")
                             }) {
                             Text(
                                 text = "Don’t have account? Sign up",
