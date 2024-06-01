@@ -1,9 +1,11 @@
 package com.dicoding.rasagram.ui.pages
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -14,6 +16,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
@@ -22,6 +25,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -51,6 +55,7 @@ import com.dicoding.rasagram.ui.theme.Orange
 import com.dicoding.rasagram.ui.theme.arialFamily
 import com.dicoding.rasagram.ui.theme.poppinsFamily
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -198,6 +203,11 @@ fun LoginScreen(
                         ) {
                             Text(stringResource(R.string.login))
                         }
+                        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
+                            if (state.value?.isLoading == true) {
+                                CircularProgressIndicator()
+                            }
+                        }
                         Spacer(modifier = Modifier.height(16.dp))
                         TextButton(
                             onClick = {
@@ -212,6 +222,23 @@ fun LoginScreen(
                                     fontFamily = arialFamily
                                 )
                             )
+                        }
+                        LaunchedEffect(key1 = state.value?.isSuccess) {
+                            scope.launch {
+                                if (state.value?.isSuccess?.isNotEmpty() == true) {
+                                    val success = state.value?.isSuccess
+                                    Toast.makeText(context, "${success}", Toast.LENGTH_LONG).show()
+                                    navController.navigate("MainScreen")
+                                }
+                            }
+                        }
+                        LaunchedEffect(key1 = state.value?.isError) {
+                            scope.launch {
+                                if (state.value?.isError?.isNotEmpty() == true) {
+                                    val error = state.value?.isError
+                                    Toast.makeText(context, "${error}", Toast.LENGTH_LONG).show()
+                                }
+                            }
                         }
                     }
                 }

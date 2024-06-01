@@ -9,7 +9,6 @@ import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavDestination
@@ -24,7 +23,7 @@ import com.dicoding.rasagram.ui.theme.Orange
 import com.dicoding.rasagram.ui.theme.White
 
 @Composable
-fun MainScreen() {
+fun MainScreen(navController: NavHostController) {
     val navController = rememberNavController()
     Scaffold (
         bottomBar = { BottomBar(navController = navController)}

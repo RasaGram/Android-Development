@@ -122,6 +122,21 @@ fun ProfileScreen() {
             ) {
                 Text(text = "Save")
             }
+            Spacer(modifier = Modifier.height(200.dp))
+            Button(
+                onClick = { /* login logic here */ },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(51.23.dp)
+                    .padding(horizontal = 25.dp),
+                shape = RoundedCornerShape(7.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Orange,
+                    contentColor = Color.White
+                )
+            ) {
+                Text(text = "LogOut")
+            }
 
         }
     }
