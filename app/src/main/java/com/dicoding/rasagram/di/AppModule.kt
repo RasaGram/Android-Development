@@ -3,8 +3,8 @@ package com.dicoding.rasagram.di
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
-import com.dicoding.rasagram.data.AuthRepository
-import com.dicoding.rasagram.data.AuthRepositoryImpl
+import com.dicoding.rasagram.data.repository.AuthRepository
+import com.dicoding.rasagram.data.repository.AuthRepositoryImpl
 import com.google.firebase.auth.FirebaseAuth
 import dagger.Module
 import dagger.Provides
@@ -23,7 +23,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun providesRepositoryImpl(firebaseAuth: FirebaseAuth):AuthRepository{
+    fun providesRepositoryImpl(firebaseAuth: FirebaseAuth): AuthRepository {
         return AuthRepositoryImpl(firebaseAuth)
     }
 

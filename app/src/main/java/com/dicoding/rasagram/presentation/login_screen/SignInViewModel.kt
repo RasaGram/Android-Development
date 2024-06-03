@@ -3,9 +3,8 @@ package com.dicoding.rasagram.presentation.login_screen
 import android.content.SharedPreferences
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
-import com.dicoding.rasagram.data.AuthRepository
+import com.dicoding.rasagram.data.repository.AuthRepository
 import com.dicoding.rasagram.ui.service.Screens
 import com.dicoding.rasagram.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -45,8 +44,9 @@ class SignInViewModel @Inject constructor(
         return sharedPreferences.getBoolean("is_logged_in", false)
     }
 
-    fun logout(navController: NavController) {
+    fun logout(navController : NavHostController) {
         sharedPreferences.edit().remove("is_logged_in").apply()
+//        navController.navigate(Screens.LoginScreen.route)
     }
 }
 

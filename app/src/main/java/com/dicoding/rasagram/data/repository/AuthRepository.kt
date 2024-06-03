@@ -1,4 +1,4 @@
-package com.dicoding.rasagram.data
+package com.dicoding.rasagram.data.repository
 
 import com.dicoding.rasagram.util.Resource
 import com.google.firebase.auth.AuthResult

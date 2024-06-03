@@ -2,8 +2,7 @@ package com.dicoding.rasagram.presentation.signup_screen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.dicoding.rasagram.data.AuthRepository
-import com.dicoding.rasagram.presentation.login_screen.SignInState
+import com.dicoding.rasagram.data.repository.AuthRepository
 import com.dicoding.rasagram.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel

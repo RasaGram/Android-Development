@@ -46,7 +46,8 @@ import com.dicoding.rasagram.ui.theme.poppinsFamily
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ProfileScreen(viewModel : SignInViewModel= hiltViewModel(), navController: NavHostController) {
+fun ProfileScreen(viewModel : SignInViewModel= hiltViewModel(),
+                  navController: NavHostController) {
     var username by remember { mutableStateOf("") }
     Surface {
         Column(
@@ -130,7 +131,7 @@ fun ProfileScreen(viewModel : SignInViewModel= hiltViewModel(), navController: N
             Spacer(modifier = Modifier.height(120.dp))
             Button(
                 onClick = {
-                    viewModel.logout(navController)
+                    viewModel.logout(navController = navController)
                 },
                 modifier = Modifier
                     .fillMaxWidth()
