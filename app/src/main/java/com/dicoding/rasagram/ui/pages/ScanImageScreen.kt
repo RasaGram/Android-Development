@@ -92,7 +92,7 @@ fun ScanImagePage(navController: NavHostController) {
         contract = ActivityResultContracts.PickVisualMedia(),
         onResult = { uri -> selectedImageUri = uri }
     )
-    
+
     Surface(
         modifier = Modifier
             .fillMaxSize()
@@ -193,17 +193,17 @@ fun ScanImagePage(navController: NavHostController) {
         }
     }
 }
-@Composable
-fun Context.createImageFile(): File {
-    val timeStamp = SimpleDateFormat("yyyy_MM_dd_HH:mm:ss").format(Date())
-    val imageFileName = "JPEG_" + timeStamp + "_"
-    val image = File.createTempFile(
-        imageFileName,
-        ".jpg",
-        externalCacheDir
-    )
-    return  image
-}
+//@Composable
+//fun Context.createImageFile(): File {
+//    val timeStamp = SimpleDateFormat("yyyy_MM_dd_HH:mm:ss").format(Date())
+//    val imageFileName = "JPEG_" + timeStamp + "_"
+//    val image = File.createTempFile(
+//        imageFileName,
+//        ".jpg",
+//        externalCacheDir
+//    )
+//    return  image
+//}
 
 
 
