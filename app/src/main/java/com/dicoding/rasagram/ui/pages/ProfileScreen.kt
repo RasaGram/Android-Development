@@ -132,6 +132,7 @@ fun ProfileScreen(viewModel : SignInViewModel= hiltViewModel(),
             Button(
                 onClick = {
                     viewModel.logout(navController = navController)
+//                    navController.navigate(Screens.LoginScreen.route)
                 },
                 modifier = Modifier
                     .fillMaxWidth()
