@@ -92,8 +92,7 @@ fun ScanImagePage(navController: NavHostController) {
         contract = ActivityResultContracts.PickVisualMedia(),
         onResult = { uri -> selectedImageUri = uri }
     )
-
-
+    
     Surface(
         modifier = Modifier
             .fillMaxSize()
