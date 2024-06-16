@@ -22,16 +22,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.font.FontWeight.Companion.Bold
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.dicoding.rasagram.ui.theme.Black
 import com.dicoding.rasagram.ui.theme.Orange
 import com.dicoding.rasagram.ui.theme.poppinsFamily
 
 @Composable
-fun DetailResepScreen(){
+fun DetailResepScreen(navController: NavHostController) {
     Surface {
         Column (
             modifier = Modifier
@@ -134,8 +135,9 @@ fun DetailResepScreen(){
 
 
 
+
 @Preview
 @Composable
 fun DetailResepScreenPreview(){
-    DetailResepScreen()
+    DetailResepScreen(navController = rememberNavController())
 }

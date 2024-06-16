@@ -3,6 +3,8 @@ package com.dicoding.rasagram.ui.pages
 import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -34,6 +36,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -51,9 +54,36 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Objects
 
+fun resizeImage(imagePath: String, targetWidth: Int, targetHeight: Int): Bitmap {
+    val options = BitmapFactory.Options().apply {
+        inJustDecodeBounds = true
+    }
+    BitmapFactory.decodeFile(imagePath, options)
+
+    options.inSampleSize = calculateInSampleSize(options, targetWidth, targetHeight)
+    options.inJustDecodeBounds = false
+
+    val originalBitmap = BitmapFactory.decodeFile(imagePath, options)
+    return Bitmap.createScaledBitmap(originalBitmap, targetWidth, targetHeight, true)
+}
+
+fun calculateInSampleSize(options: BitmapFactory.Options, reqWidth: Int, reqHeight: Int): Int {
+    val (height: Int, width: Int) = options.run { outHeight to outWidth }
+    var inSampleSize = 1
+
+    if (height > reqHeight || width > reqWidth) {
+        val halfHeight: Int = height / 2
+        val halfWidth: Int = width / 2
+
+        while (halfHeight / inSampleSize >= reqHeight && halfWidth / inSampleSize >= reqWidth) {
+            inSampleSize *= 2
+        }
+    }
+    return inSampleSize
+}
+
 @Composable
 fun ScanImagePage(navController: NavHostController) {
-
     val context = LocalContext.current
     val file = context.createImageFile()
     val uri = FileProvider.getUriForFile(
@@ -61,19 +91,25 @@ fun ScanImagePage(navController: NavHostController) {
         context.packageName + ".provider", file
     )
 
-
-    //launcher camera
     var captureImageUri by remember {
         mutableStateOf<Uri>(Uri.EMPTY)
     }
 
-    val cameraLauncher = rememberLauncherForActivityResult(ActivityResultContracts.TakePicture()){
-        captureImageUri = uri
+    var resizedImageBitmap by remember {
+        mutableStateOf<Bitmap?>(null)
+    }
+
+    val cameraLauncher = rememberLauncherForActivityResult(ActivityResultContracts.TakePicture()) {
+        if (it) {
+            captureImageUri = uri
+            val resizedBitmap = resizeImage(file.path, 224, 224)
+            resizedImageBitmap = resizedBitmap
+        }
     }
 
     val permissionLauncher = rememberLauncherForActivityResult(
-        ActivityResultContracts.RequestPermission()){
-        if (it){
+        ActivityResultContracts.RequestPermission()) {
+        if (it) {
             Toast.makeText(context, "Permission Granted", Toast.LENGTH_SHORT).show()
             cameraLauncher.launch(uri)
         } else {
@@ -81,16 +117,15 @@ fun ScanImagePage(navController: NavHostController) {
         }
     }
 
-
-    //pick foto dari galeri
     var selectedImageUri by remember {
         mutableStateOf<Uri?>(null)
     }
 
-    @Suppress
-        ("NAME_SHADOWING") val selectphoto = rememberLauncherForActivityResult(
+    val selectPhoto = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.PickVisualMedia(),
-        onResult = { uri -> selectedImageUri = uri }
+        onResult = { uri ->
+            selectedImageUri = uri
+        }
     )
 
     Surface(
@@ -109,19 +144,23 @@ fun ScanImagePage(navController: NavHostController) {
                     .fillMaxWidth()
                     .fillMaxHeight(0.5f),
                 contentAlignment = Alignment.Center
-            ){
-                if (captureImageUri.toString().isNotEmpty()){
+            ) {
+                if (resizedImageBitmap != null) {
+                    Image(
+                        bitmap = resizedImageBitmap!!.asImageBitmap(),
+                        contentDescription = null
+                    )
+                } else if (captureImageUri.toString().isNotEmpty()) {
                     Image(
                         painter = rememberAsyncImagePainter(model = captureImageUri),
                         contentDescription = null
                     )
-                }else if (selectedImageUri != null){
+                } else if (selectedImageUri != null) {
                     Image(
                         painter = rememberAsyncImagePainter(model = selectedImageUri),
                         contentDescription = null
                     )
-                }
-                else{
+                } else {
                     Image(painter = painterResource(id = R.drawable.scan), contentDescription = null)
                 }
             }
@@ -135,9 +174,9 @@ fun ScanImagePage(navController: NavHostController) {
             ) {
                 Button(
                     onClick = {
-                          selectphoto.launch(
-                              PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
-                          )
+                        selectPhoto.launch(
+                            PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
+                        )
                     },
                     modifier = Modifier
                         .weight(1f)
@@ -155,13 +194,14 @@ fun ScanImagePage(navController: NavHostController) {
                 Button(
                     onClick = {
                         val permissionCheckResult =
-                        ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA)
+                            ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA)
 
-                        if (permissionCheckResult == PackageManager.PERMISSION_GRANTED){
+                        if (permissionCheckResult == PackageManager.PERMISSION_GRANTED) {
                             cameraLauncher.launch(uri)
                         } else {
                             permissionLauncher.launch(Manifest.permission.CAMERA)
-                        } },
+                        }
+                    },
                     modifier = Modifier
                         .weight(1f)
                         .height(51.23.dp)
@@ -177,7 +217,12 @@ fun ScanImagePage(navController: NavHostController) {
             }
             Spacer(modifier = Modifier.height(48.dp))
             Button(
-                onClick = { /* login logic here */ },
+                onClick = {
+                    if (captureImageUri.toString().isNotEmpty()) {
+                        val resizedBitmap = resizeImage(file.path, 224, 224)
+                        resizedImageBitmap = resizedBitmap
+                    }
+                },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(51.23.dp)

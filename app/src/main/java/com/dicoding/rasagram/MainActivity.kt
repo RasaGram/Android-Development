@@ -9,6 +9,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.dicoding.rasagram.presentation.login_screen.SignInViewModel
 import com.dicoding.rasagram.presentation.signup_screen.SignUpViewModel
+import com.dicoding.rasagram.ui.pages.DetailResepScreen
 import com.dicoding.rasagram.ui.pages.HomepageScreen
 import com.dicoding.rasagram.ui.pages.LoginScreen
 import com.dicoding.rasagram.ui.pages.MainScreen
@@ -50,6 +51,10 @@ class MainActivity : ComponentActivity() {
                 composable(Screens.ProfileScreen.route){
                     ScanImagePage(navController = navController)
                 }
+//                composable(Screens.DetailResepScreen.route){
+//                    DetailResepScreen(navController = navController)
+//                }
+
             }
         }
     }
