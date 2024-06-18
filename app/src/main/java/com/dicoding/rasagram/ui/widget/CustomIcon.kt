@@ -2,14 +2,11 @@ package com.dicoding.rasagram.ui.widget
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -26,12 +23,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.compose.rememberNavController
 import com.dicoding.rasagram.R
 import com.dicoding.rasagram.data.model.Dish
 import com.dicoding.rasagram.data.repository.DishRepository
-import com.dicoding.rasagram.ui.pages.LoginScreen
-import com.dicoding.rasagram.ui.theme.Orange
 import com.dicoding.rasagram.ui.theme.White
 import com.dicoding.rasagram.ui.theme.poppinsFamily
 
@@ -41,8 +35,7 @@ fun CustomIcon(dish: Dish){
         modifier = Modifier
             .fillMaxWidth()
             .size(200.dp)
-            .shadow(8.dp, RoundedCornerShape(8.dp)) // Menambahkan shadow
-//            .border(2.dp, Color.Black, RoundedCornerShape(8.dp)) // Menambahkan border
+            .shadow(8.dp, RoundedCornerShape(8.dp))
             .background(Color.White)
             .clickable (onClick = {})
     ) {

@@ -5,20 +5,16 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -33,16 +29,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -51,10 +43,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.dicoding.rasagram.R
 import com.dicoding.rasagram.data.repository.DishRepository
-import com.dicoding.rasagram.ui.theme.Black
-import com.dicoding.rasagram.ui.theme.Orange
 import com.dicoding.rasagram.ui.theme.White
-import com.dicoding.rasagram.ui.theme.arialFamily
 import com.dicoding.rasagram.ui.theme.poppinsFamily
 import com.dicoding.rasagram.ui.widget.CustomIcon
 
@@ -107,37 +96,42 @@ fun HomepageScreen(navController: NavHostController) {
                                     fontFamily = poppinsFamily
                                 )
                             )
-                            Spacer(modifier = Modifier.height(45.dp))
+//                            Spacer(modifier = Modifier.height(45.dp))
                             OutlinedTextField(
                                 value = searchText,
                                 onValueChange = { searchText = it },
                                 label = {
                                     Text(
-                                        text = "",
+                                        text = "Search", // Specify your label text here
                                         style = TextStyle(
-                                            fontFamily = arialFamily,
+                                            fontFamily = poppinsFamily,
                                             fontWeight = FontWeight.Bold,
-                                            color = White,
-                                            fontSize = 12.sp, // Increase the font size for better visibility
-                                            textAlign = TextAlign.Center // Align the text to the center
+                                            color = Color.White, // Set text color to white
+                                            fontSize = 15.sp,
+                                            textAlign = TextAlign.Center
                                         )
                                     )
                                 },
                                 modifier = Modifier
-                                    .fillMaxWidth(),
+                                    .fillMaxWidth()
+                                    .height(56.dp), // Set desired height here
                                 shape = RoundedCornerShape(25.dp),
+                                textStyle = TextStyle(color = Color.White), // Set text color in TextStyle
                                 colors = TextFieldDefaults.outlinedTextFieldColors(
                                     focusedBorderColor = Color.White,
-                                    unfocusedBorderColor = Color.White
+                                    unfocusedBorderColor = Color.White,
+                                    cursorColor = Color.White // Set cursor color to white
                                 ),
                                 leadingIcon = {
                                     Icon(
                                         imageVector = Icons.Default.Search,
                                         contentDescription = "Search Icon",
-                                        tint = White
+                                        tint = Color.White // Set icon tint color to white
                                     )
                                 }
                             )
+
+
                         }
                     }
                 }
