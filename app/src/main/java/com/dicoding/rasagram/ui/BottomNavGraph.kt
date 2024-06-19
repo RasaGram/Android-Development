@@ -1,6 +1,8 @@
 package com.dicoding.rasagram.ui
 
+import android.content.Context
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -19,7 +21,9 @@ fun BottomNavGraph(navController: NavHostController){
             HomepageScreen(navController)
         }
         composable(route = BottomBarScreen.Scan.route){
-            ScanImagePage(navController)
+            ScanImagePage(
+                sharedPreferences = LocalContext.current.getSharedPreferences("my_app_prefs", Context.MODE_PRIVATE),
+                navController = navController)
         }
         composable(route = BottomBarScreen.Profile.route){
             ProfileScreen(navController = rememberNavController())

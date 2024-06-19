@@ -2,6 +2,7 @@ package com.dicoding.rasagram.ui.pages
 
 import android.Manifest
 import android.content.Context
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -40,14 +41,13 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import coil.compose.rememberAsyncImagePainter
 import com.dicoding.rasagram.R
+import com.dicoding.rasagram.ui.service.Screens
 import com.dicoding.rasagram.ui.theme.Orange
 import java.io.File
 import java.text.SimpleDateFormat
@@ -83,7 +83,10 @@ fun calculateInSampleSize(options: BitmapFactory.Options, reqWidth: Int, reqHeig
 }
 
 @Composable
-fun ScanImagePage(navController: NavHostController) {
+fun ScanImagePage(
+    sharedPreferences: SharedPreferences,
+    navController: NavHostController
+) {
     val context = LocalContext.current
     val file = context.createImageFile()
     val uri = FileProvider.getUriForFile(
@@ -218,10 +221,12 @@ fun ScanImagePage(navController: NavHostController) {
             Spacer(modifier = Modifier.height(48.dp))
             Button(
                 onClick = {
-                    if (captureImageUri.toString().isNotEmpty()) {
-                        val resizedBitmap = resizeImage(file.path, 224, 224)
-                        resizedImageBitmap = resizedBitmap
-                    }
+                    sharedPreferences.edit().putBoolean("Scan Berhasil", true).apply()
+                    navController.navigate(Screens.LoginScreen.route)
+//                    if (captureImageUri.toString().isNotEmpty()) {
+//                        val resizedBitmap = resizeImage(file.path, 224, 224)
+//                        resizedImageBitmap = resizedBitmap
+//                    }
                 },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -252,8 +257,8 @@ fun Context.createImageFile(): File {
 
 
 
-@Preview(showBackground = true, showSystemUi = true)
-@Composable
-fun ScanImagePagePreview() {
-    ScanImagePage(navController = rememberNavController())
-}
+//@Preview(showBackground = true, showSystemUi = true)
+//@Composable
+//fun ScanImagePagePreview() {
+//    ScanImagePage(navController = rememberNavController(), sharedPreferences = sharedPreferences)
+//}

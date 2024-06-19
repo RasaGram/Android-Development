@@ -60,8 +60,9 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RegistrasiScreen(navController: NavHostController,
-                     viewModel: SignUpViewModel = hiltViewModel()
+fun RegistrasiScreen(
+    navController: NavHostController,
+    viewModel: SignUpViewModel = hiltViewModel()
 ) {
     var username by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
@@ -264,17 +265,6 @@ fun RegistrasiScreen(navController: NavHostController,
                 Button(
                     onClick = {
                         viewModel.registerUser(email, password)
-//                        val isUsernameValid = Validator.validateUsername(username).status
-//                        val isEmailValid = Validator.validateEmail(email).status
-//                        val isPasswordValid = Validator.validatePassword(password).status
-//
-//                        if (isUsernameValid && isEmailValid && isPasswordValid) {
-//                            navController.navigate("LoginScreen")
-//                        } else {
-//                            if (!isUsernameValid) usernameError = "Username must be at least 6 characters long"
-//                            if (!isEmailValid) emailError = "Email cannot be empty"
-//                            if (!isPasswordValid) passwordError = "Password must be at least 8 characters long"
-//                        }
                               },
                     modifier = Modifier
                         .fillMaxWidth()

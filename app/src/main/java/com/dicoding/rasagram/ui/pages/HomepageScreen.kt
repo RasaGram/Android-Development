@@ -17,6 +17,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
@@ -33,6 +35,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -43,6 +46,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.dicoding.rasagram.R
 import com.dicoding.rasagram.data.repository.DishRepository
+import com.dicoding.rasagram.ui.service.Screens
+import com.dicoding.rasagram.ui.theme.Orange
 import com.dicoding.rasagram.ui.theme.White
 import com.dicoding.rasagram.ui.theme.poppinsFamily
 import com.dicoding.rasagram.ui.widget.CustomIcon
@@ -130,8 +135,22 @@ fun HomepageScreen(navController: NavHostController) {
                                     )
                                 }
                             )
-
-
+                            Button(
+                                onClick = {
+                                    navController.navigate(Screens.DetailResepScreen.route)
+                                },
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .height(51.23.dp)
+                                    .padding(horizontal = 5.dp),
+                                shape = RoundedCornerShape(7.dp),
+                                colors = ButtonDefaults.buttonColors(
+                                    containerColor = Orange,
+                                    contentColor = Color.White
+                                )
+                            ) {
+                                Text(stringResource(R.string.Scan))
+                            }
                         }
                     }
                 }
@@ -142,7 +161,7 @@ fun HomepageScreen(navController: NavHostController) {
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 items(items = getAllData.filter { it.dish_name.contains(searchText, ignoreCase = true) }) { dish ->
-                    CustomIcon(dish = dish)
+                    CustomIcon(dish = dish, navController = navController)
                 }
             }
         }

@@ -23,21 +23,24 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.dicoding.rasagram.R
 import com.dicoding.rasagram.data.model.Dish
 import com.dicoding.rasagram.data.repository.DishRepository
+import com.dicoding.rasagram.ui.service.Screens
 import com.dicoding.rasagram.ui.theme.White
 import com.dicoding.rasagram.ui.theme.poppinsFamily
 
 @Composable
-fun CustomIcon(dish: Dish){
+fun CustomIcon(navController: NavHostController, dish: Dish){
     Box(
         modifier = Modifier
             .fillMaxWidth()
             .size(200.dp)
             .shadow(8.dp, RoundedCornerShape(8.dp))
             .background(Color.White)
-            .clickable (onClick = {})
+            .clickable(onClick = { navController.navigate(Screens.DetailResepScreen.route) })
     ) {
         Column(
             modifier = Modifier
@@ -84,5 +87,5 @@ fun CustomIcon(dish: Dish){
 fun CustomIcon(){
     val dishRepository = DishRepository()
     val sampleDish = dishRepository.getAllData().first() // Get the first dish for preview
-    CustomIcon(dish = sampleDish)
+    CustomIcon(dish = sampleDish, navController = rememberNavController())
 }

@@ -193,6 +193,7 @@ fun LoginScreen(
                         Button(
                             onClick = {
                                 viewModel.loginUser(email, password)
+//                                navController.navigate(Screens.RegisterScreen.route)
                             },
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -232,7 +233,7 @@ fun LoginScreen(
                                     Toast.makeText(context, "${success}", Toast.LENGTH_LONG).show()
                                     // Simpan status login ke Shared Preferences saat login berhasil
                                     sharedPreferences.edit().putBoolean("is_logged_in", true).apply()
-                                    navController.navigate("MainScreen")
+                                    navController.navigate(Screens.HomePageScreen.route)
                                 }
                             }
                         }

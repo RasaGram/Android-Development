@@ -38,8 +38,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.dicoding.rasagram.presentation.login_screen.SignInViewModel
-import com.dicoding.rasagram.presentation.signup_screen.SignUpViewModel
-import com.dicoding.rasagram.ui.service.Screens
 import com.dicoding.rasagram.ui.theme.Black
 import com.dicoding.rasagram.ui.theme.Orange
 import com.dicoding.rasagram.ui.theme.poppinsFamily
@@ -115,7 +113,7 @@ fun ProfileScreen(viewModel : SignInViewModel= hiltViewModel(),
             )
             Spacer(modifier = Modifier.height(25.dp))
             Button(
-                onClick = { /* login logic here */ },
+                onClick = {navController.navigate("DetailResepScreen")},
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(51.23.dp)
@@ -132,7 +130,7 @@ fun ProfileScreen(viewModel : SignInViewModel= hiltViewModel(),
             Button(
                 onClick = {
                     viewModel.logout(navController = navController)
-//                    navController.navigate(Screens.LoginScreen.route)
+//                    navController.navigate(Screens.HomePageScreen.route)
                 },
                 modifier = Modifier
                     .fillMaxWidth()
