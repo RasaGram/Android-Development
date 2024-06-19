@@ -144,9 +144,6 @@ fun DetailResepScreen(navController: NavHostController, dishId : Int) {
     }
 }
 
-
-
-
 @Preview
 @Composable
 fun DetailResepScreenPreview(){

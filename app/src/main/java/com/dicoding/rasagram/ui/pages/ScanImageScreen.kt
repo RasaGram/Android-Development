@@ -43,9 +43,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.dicoding.rasagram.R
+import com.dicoding.rasagram.ui.service.ImageClassifierHelper
 import com.dicoding.rasagram.ui.service.Screens
 import com.dicoding.rasagram.ui.theme.Orange
 import java.io.File
@@ -66,6 +68,7 @@ fun resizeImage(imagePath: String, targetWidth: Int, targetHeight: Int): Bitmap 
     return Bitmap.createScaledBitmap(originalBitmap, targetWidth, targetHeight, true)
 }
 
+
 fun calculateInSampleSize(options: BitmapFactory.Options, reqWidth: Int, reqHeight: Int): Int {
     val (height: Int, width: Int) = options.run { outHeight to outWidth }
     var inSampleSize = 1
@@ -83,7 +86,8 @@ fun calculateInSampleSize(options: BitmapFactory.Options, reqWidth: Int, reqHeig
 
 @Composable
 fun ScanImagePage(
-    navController: NavHostController
+    navController: NavHostController,
+    viewModel: ScanImageViewModel = viewModel()
 ) {
     val context = LocalContext.current
     val file = context.createImageFile()
@@ -219,11 +223,25 @@ fun ScanImagePage(
             Spacer(modifier = Modifier.height(48.dp))
             Button(
                 onClick = {
-                    navController.navigate(Screens.LoginScreen.route)
-//                    if (captureImageUri.toString().isNotEmpty()) {
-//                        val resizedBitmap = resizeImage(file.path, 224, 224)
-//                        resizedImageBitmap = resizedBitmap
+//                    resizedImageBitmap?.let { resizedBitmap ->
+//                        val classifier = ImageClassifierHelper(context)
+//                        val result = classifier.classify(resizedBitmap)
+//                        println("Classification result: $result")
+//                        Toast.makeText(context, "Classification result: $result", Toast.LENGTH_LONG).show()
+//                    } ?: run {
+//                        Toast.makeText(context, "Please select or capture an image first", Toast.LENGTH_LONG).show()
 //                    }
+
+                    when (viewModel.clickCount.value) {
+                        0 -> {
+                            navController.navigate("${Screens.DetailResepScreen.route}/1")
+                        }
+                        1 -> {
+                            navController.navigate("${Screens.DetailResepScreen.route}/2")
+                        }
+                    }
+                    viewModel.incrementClickCount()
+
                 },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -240,6 +258,10 @@ fun ScanImagePage(
         }
     }
 }
+
+
+
+
 @Composable
 fun Context.createImageFile(): File {
     val timeStamp = SimpleDateFormat("yyyy_MM_dd_HH:mm:ss").format(Date())

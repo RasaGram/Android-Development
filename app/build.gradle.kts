@@ -95,6 +95,10 @@ dependencies {
     implementation ("androidx.hilt:hilt-navigation-compose:1.0.0")
 
     implementation ("io.coil-kt:coil-compose:2.4.0")
+
+    implementation ("org.tensorflow:tensorflow-lite:2.13.0")
+    implementation ("org.tensorflow:tensorflow-lite-support:0.4.4")
+
 }
 
 hilt {
