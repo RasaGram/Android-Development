@@ -2,6 +2,7 @@ package com.dicoding.rasagram.ui.pages
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -17,9 +18,9 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FabPosition
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
@@ -31,21 +32,24 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.dicoding.rasagram.R
 import com.dicoding.rasagram.data.repository.DishRepository
+import com.dicoding.rasagram.presentation.login_screen.SignInViewModel
 import com.dicoding.rasagram.ui.service.Screens
 import com.dicoding.rasagram.ui.theme.Orange
 import com.dicoding.rasagram.ui.theme.White
@@ -54,13 +58,31 @@ import com.dicoding.rasagram.ui.widget.CustomIcon
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomepageScreen(navController: NavHostController) {
+fun HomepageScreen(navController: NavHostController,viewModel : SignInViewModel= hiltViewModel()) {
     val dishRepository = DishRepository()
     val getAllData = dishRepository.getAllData()
     var searchText by remember{ mutableStateOf("") }
 
     Scaffold(
-
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = {
+                    navController.navigate(Screens.ScanImageScreen.route)
+                },
+                contentColor = Color.White,
+                modifier = Modifier
+                    .padding(16.dp),
+                containerColor = Orange
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.camera),
+                    contentDescription = "Profile",
+                    tint = Color.White
+                )
+            }
+        },
+        floatingActionButtonPosition = FabPosition.End,
+//        isFloatingActionButtonDocked = true,
     ) { innerPadding ->
         Column(modifier = Modifier
             .fillMaxHeight()
@@ -69,7 +91,7 @@ fun HomepageScreen(navController: NavHostController) {
                 modifier = Modifier
                     .height(200.dp)
                     .fillMaxWidth(),
-                shape = RoundedCornerShape(bottomStart = 25.dp, bottomEnd = 25.dp),
+                shape = RoundedCornerShape(bottomStart = 20.dp, bottomEnd = 20.dp),
                 color = Color.Black
             ) {
                 Box(
@@ -92,6 +114,16 @@ fun HomepageScreen(navController: NavHostController) {
                             .background(Color.Black.copy(alpha = 0.6f)), // Lapisan gelap dengan transparansi
                     ) {
                         Column (Modifier.padding(20.dp)){
+                            Image(
+                                painter = painterResource(id = R.drawable.logout),
+                                contentDescription = "Logo",
+                                modifier = Modifier
+                                    .size(30.dp)
+                                    .align(Alignment.End)
+                                    .clickable {
+                                        viewModel.logout(navController) },
+                                colorFilter = ColorFilter.tint(Color.White)
+                            )
                             Text(
                                 text = "Welcome",
                                 style = TextStyle(
@@ -135,28 +167,12 @@ fun HomepageScreen(navController: NavHostController) {
                                     )
                                 }
                             )
-                            Button(
-                                onClick = {
-                                    navController.navigate(Screens.ProfileScreen.route)
-                                },
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .height(51.23.dp)
-                                    .padding(horizontal = 5.dp),
-                                shape = RoundedCornerShape(7.dp),
-                                colors = ButtonDefaults.buttonColors(
-                                    containerColor = Orange,
-                                    contentColor = Color.White
-                                )
-                            ) {
-                                Text(stringResource(R.string.Scan))
-                            }
                         }
                     }
                 }
             }
             LazyColumn(
-                modifier = Modifier.fillMaxHeight(),
+                modifier = Modifier.fillMaxHeight().padding(top=5.dp),
                 contentPadding = PaddingValues(start = 16.dp, top = 16.dp, end = 16.dp, bottom = 96.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {

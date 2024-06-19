@@ -44,9 +44,9 @@ class SignInViewModel @Inject constructor(
         return sharedPreferences.getBoolean("is_logged_in", false)
     }
 
-    fun logout(navController : NavHostController) {
+    fun logout(navController: NavHostController) {
         sharedPreferences.edit().remove("is_logged_in").apply()
-//        navController.navigate(Screens.LoginScreen.route)
+        navController.navigate(Screens.LoginScreen.route)
     }
 }
 

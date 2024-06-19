@@ -2,7 +2,6 @@ package com.dicoding.rasagram.ui.pages
 
 import android.Manifest
 import android.content.Context
-import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -84,7 +83,6 @@ fun calculateInSampleSize(options: BitmapFactory.Options, reqWidth: Int, reqHeig
 
 @Composable
 fun ScanImagePage(
-    sharedPreferences: SharedPreferences,
     navController: NavHostController
 ) {
     val context = LocalContext.current
@@ -221,7 +219,6 @@ fun ScanImagePage(
             Spacer(modifier = Modifier.height(48.dp))
             Button(
                 onClick = {
-                    sharedPreferences.edit().putBoolean("Scan Berhasil", true).apply()
                     navController.navigate(Screens.LoginScreen.route)
 //                    if (captureImageUri.toString().isNotEmpty()) {
 //                        val resizedBitmap = resizeImage(file.path, 224, 224)

@@ -15,6 +15,7 @@ import com.dicoding.rasagram.ui.pages.LoginScreen
 import com.dicoding.rasagram.ui.pages.MainScreen
 import com.dicoding.rasagram.ui.pages.ProfileScreen
 import com.dicoding.rasagram.ui.pages.RegistrasiScreen
+import com.dicoding.rasagram.ui.pages.ScanImagePage
 import com.dicoding.rasagram.ui.pages.SplashScreen
 import com.dicoding.rasagram.ui.service.Screens
 
@@ -37,12 +38,14 @@ fun MainNavHost(navController: NavHostController, viewModel: SignInViewModel) {
         composable(Screens.SplashScreen.route) {
             SplashScreen(navController = navController)
         }
-
         composable(Screens.ProfileScreen.route) {
             ProfileScreen(navController = navController)
         }
         composable(Screens.DetailResepScreen.route) {
             DetailResepScreen(navController = navController, dishId = 0)
+        }
+        composable(Screens.ScanImageScreen.route) {
+            ScanImagePage(navController = navController)
         }
         composable(
             route = "${Screens.DetailResepScreen.route}/{dishId}",
