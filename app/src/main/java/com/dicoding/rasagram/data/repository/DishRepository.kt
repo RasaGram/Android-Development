@@ -127,4 +127,9 @@ class DishRepository {
             ),
         )
     }
+
+    fun getDishById(dishId: Int): Dish? {
+        val allDishes = getAllData()
+        return allDishes.find { it.id == dishId }
+    }
 }

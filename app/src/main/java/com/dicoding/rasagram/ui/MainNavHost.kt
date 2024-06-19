@@ -1,26 +1,26 @@
 package com.dicoding.rasagram.ui
 
-import android.content.Context
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import com.dicoding.rasagram.presentation.login_screen.SignInViewModel
 import com.dicoding.rasagram.presentation.signup_screen.SignUpViewModel
 import com.dicoding.rasagram.ui.pages.DetailResepScreen
 import com.dicoding.rasagram.ui.pages.HomepageScreen
 import com.dicoding.rasagram.ui.pages.LoginScreen
 import com.dicoding.rasagram.ui.pages.MainScreen
+import com.dicoding.rasagram.ui.pages.ProfileScreen
 import com.dicoding.rasagram.ui.pages.RegistrasiScreen
-import com.dicoding.rasagram.ui.pages.ScanImagePage
 import com.dicoding.rasagram.ui.pages.SplashScreen
 import com.dicoding.rasagram.ui.service.Screens
 
 @Composable
-fun MainNavHost(navController: NavHostController, viewModel: SignInViewModel, initialRoute: String) {
-    NavHost(navController = navController, startDestination = initialRoute) {
+fun MainNavHost(navController: NavHostController, viewModel: SignInViewModel) {
+    NavHost(navController = navController, startDestination = Screens.HomePageScreen.route) {
         composable(Screens.LoginScreen.route) {
             LoginScreen(navController = navController, viewModel = viewModel)
         }
@@ -37,31 +37,26 @@ fun MainNavHost(navController: NavHostController, viewModel: SignInViewModel, in
         composable(Screens.SplashScreen.route) {
             SplashScreen(navController = navController)
         }
+
         composable(Screens.ProfileScreen.route) {
-            ScanImagePage(navController = navController,sharedPreferences = LocalContext.current.getSharedPreferences("my_app_prefs", Context.MODE_PRIVATE))
+            ProfileScreen(navController = navController)
         }
         composable(Screens.DetailResepScreen.route) {
-            DetailResepScreen(navController = navController)
+            DetailResepScreen(navController = navController, dishId = 0)
         }
-//        composable(
-//            route = "${Screens.DetailResepScreen.route}/{dishId}",
-//            arguments = listOf(navArgument("dishId") { type = NavType.IntType })
-//        ) { backStackEntry ->
-//            val dishId = backStackEntry.arguments?.getInt("dishId") ?: 0
-//            val dish = DishRepository().getDishById(dishId)
-//            if (dish != null) {
-//                DetailResepScreen(navController = navController, dish = dish)
-//            } else {
-//                // Handle error or navigate to a fallback screen
-//                Text("Dish not found")
-//            }
-//        }
+        composable(
+            route = "${Screens.DetailResepScreen.route}/{dishId}",
+            arguments = listOf(navArgument("dishId") { type = NavType.IntType })
+        ) { backStackEntry ->
+            val dishId = backStackEntry.arguments?.getInt("dishId") ?: 0
+            DetailResepScreen(navController = navController, dishId = dishId)
+        }
     }
 }
 
 private fun initialRoute(viewModel: SignInViewModel): String {
     return if (viewModel.isLoggedIn()) {
-        Screens.MainScreen.route
+        Screens.HomePageScreen.route
     } else {
         Screens.LoginScreen.route
     }

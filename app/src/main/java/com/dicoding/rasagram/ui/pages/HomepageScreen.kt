@@ -137,7 +137,7 @@ fun HomepageScreen(navController: NavHostController) {
                             )
                             Button(
                                 onClick = {
-                                    navController.navigate(Screens.DetailResepScreen.route)
+                                    navController.navigate(Screens.ProfileScreen.route)
                                 },
                                 modifier = Modifier
                                     .fillMaxWidth()

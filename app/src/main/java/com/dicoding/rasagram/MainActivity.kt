@@ -17,7 +17,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             val navController = rememberNavController()
             val viewModel: SignInViewModel = hiltViewModel()
-            MainNavHost(navController = navController, viewModel = viewModel, initialRoute = initialRoute(viewModel))
+            MainNavHost(navController = navController, viewModel = viewModel)
         }
     }
 

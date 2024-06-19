@@ -40,7 +40,7 @@ fun CustomIcon(navController: NavHostController, dish: Dish){
             .size(200.dp)
             .shadow(8.dp, RoundedCornerShape(8.dp))
             .background(Color.White)
-            .clickable(onClick = { navController.navigate(Screens.DetailResepScreen.route) })
+            .clickable(onClick = { navController.navigate("${Screens.DetailResepScreen.route}/${dish.id}") })
     ) {
         Column(
             modifier = Modifier
