@@ -25,7 +25,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.dicoding.rasagram.R
 import com.dicoding.rasagram.data.model.Dish
 import com.dicoding.rasagram.data.repository.DishRepository
 import com.dicoding.rasagram.ui.service.Screens
@@ -53,7 +52,7 @@ fun CustomIcon(navController: NavHostController, dish: Dish){
                 )
             {
                 Image(
-                    painter = painterResource(id = R.drawable.soto_betawi), // Replace with your drawable resource name
+                    painter = painterResource(dish.image), // Replace with your drawable resource name
                     contentDescription = "Example Image",
                     modifier = Modifier
                         .fillMaxWidth()

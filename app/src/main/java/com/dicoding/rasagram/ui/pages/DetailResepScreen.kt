@@ -1,5 +1,6 @@
 package com.dicoding.rasagram.ui.pages
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -19,6 +20,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.font.FontWeight.Companion.Bold
@@ -28,7 +31,6 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.dicoding.rasagram.data.repository.DishRepository
-import com.dicoding.rasagram.ui.theme.Black
 import com.dicoding.rasagram.ui.theme.Orange
 import com.dicoding.rasagram.ui.theme.poppinsFamily
 
@@ -48,11 +50,16 @@ fun DetailResepScreen(navController: NavHostController, dishId : Int) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .size(300.dp)
-                        .clip(
-                            RoundedCornerShape(20.dp)
-                        )
-                        .background(color = Black)
-                )
+                        .clip(RoundedCornerShape(20.dp))
+                        .background(color = Color.Black)
+                ) {
+                    Image(
+                        painter = painterResource(dish.image),
+                        contentDescription = "Your Image Description",
+                        modifier = Modifier.fillMaxSize(),
+                        contentScale = ContentScale.Crop
+                    )
+                }
                 Spacer(modifier = Modifier.height(25.dp))
                 Text(
                     text = dish.dish_name,

@@ -5,4 +5,5 @@ data class Dish (
     val dish_name : String,
     val description : String,
     val ingredients : String,
+    val image : Int
 )
