@@ -1,5 +1,6 @@
 package com.dicoding.rasagram.ui.pages
 
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -37,6 +38,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -62,6 +64,7 @@ fun HomepageScreen(navController: NavHostController,viewModel : SignInViewModel=
     val dishRepository = DishRepository()
     val getAllData = dishRepository.getAllData()
     var searchText by remember{ mutableStateOf("") }
+    val context = LocalContext.current
 
     Scaffold(
         floatingActionButton = {
@@ -121,7 +124,9 @@ fun HomepageScreen(navController: NavHostController,viewModel : SignInViewModel=
                                     .size(30.dp)
                                     .align(Alignment.End)
                                     .clickable {
-                                        viewModel.logout(navController) },
+                                        viewModel.logout(navController)
+                                        Toast.makeText(context, "Logout success", Toast.LENGTH_LONG).show()
+                                    },
                                 colorFilter = ColorFilter.tint(Color.White)
                             )
                             Text(

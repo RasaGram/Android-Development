@@ -21,7 +21,7 @@ import com.dicoding.rasagram.ui.service.Screens
 
 @Composable
 fun MainNavHost(navController: NavHostController, viewModel: SignInViewModel) {
-    NavHost(navController = navController, startDestination = Screens.HomePageScreen.route) {
+    NavHost(navController = navController, startDestination = if (viewModel.isLoggedIn()) Screens.HomePageScreen.route else Screens.LoginScreen.route) {
         composable(Screens.LoginScreen.route) {
             LoginScreen(navController = navController, viewModel = viewModel)
         }
