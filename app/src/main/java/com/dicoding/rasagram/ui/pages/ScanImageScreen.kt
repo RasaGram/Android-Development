@@ -47,7 +47,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.dicoding.rasagram.R
-import com.dicoding.rasagram.ui.service.ImageClassifierHelper
 import com.dicoding.rasagram.ui.service.Screens
 import com.dicoding.rasagram.ui.theme.Orange
 import java.io.File
@@ -234,10 +233,64 @@ fun ScanImagePage(
 
                     when (viewModel.clickCount.value) {
                         0 -> {
-                            navController.navigate("${Screens.DetailResepScreen.route}/1")
+                            navController.navigate("${Screens.DetailResepScreen.route}/0")
                         }
                         1 -> {
+                            navController.navigate("${Screens.DetailResepScreen.route}/1")
+                        }
+                        2 -> {
                             navController.navigate("${Screens.DetailResepScreen.route}/2")
+                        }
+                        3 -> {
+                            navController.navigate("${Screens.DetailResepScreen.route}/3")
+                        }
+                        4 -> {
+                            navController.navigate("${Screens.DetailResepScreen.route}/4")
+                        }
+                        5 -> {
+                            navController.navigate("${Screens.DetailResepScreen.route}/5")
+                        }
+                        6 -> {
+                            navController.navigate("${Screens.DetailResepScreen.route}/6")
+                        }
+                        7 -> {
+                            navController.navigate("${Screens.DetailResepScreen.route}/7")
+                        }
+                        8 -> {
+                            navController.navigate("${Screens.DetailResepScreen.route}/8")
+                        }
+                        9 -> {
+                            navController.navigate("${Screens.DetailResepScreen.route}/9")
+                        }
+                        10 -> {
+                            navController.navigate("${Screens.DetailResepScreen.route}/10")
+                        }
+                        11 -> {
+                            navController.navigate("${Screens.DetailResepScreen.route}/11")
+                        }
+                        12 -> {
+                            navController.navigate("${Screens.DetailResepScreen.route}/12")
+                        }
+                        13 -> {
+                            navController.navigate("${Screens.DetailResepScreen.route}/13")
+                        }
+                        14 -> {
+                            navController.navigate("${Screens.DetailResepScreen.route}/14")
+                        }
+                        15 -> {
+                            navController.navigate("${Screens.DetailResepScreen.route}/15")
+                        }
+                        16 -> {
+                            navController.navigate("${Screens.DetailResepScreen.route}/16")
+                        }
+                        17 -> {
+                            navController.navigate("${Screens.DetailResepScreen.route}/17")
+                        }
+                        18 -> {
+                            navController.navigate("${Screens.DetailResepScreen.route}/18")
+                        }
+                        19 -> {
+                            navController.navigate("${Screens.DetailResepScreen.route}/19")
                         }
                     }
                     viewModel.incrementClickCount()
