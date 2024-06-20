@@ -377,37 +377,19 @@ class DishRepository {
             ),
             Dish(
                 id = 13,
-                dish_name = "Cumi Saus Padang",
-                ingredients = "300 gram cumi ring frozen\n" +
-                        "1 sdm baking soda\n" +
-                        "1/2 sdt garam\n" +
-                        "1 batang serai, geprek\n" +
-                        "3 daun jeruk\n" +
-                        "1 ruas jahe\n" +
-                        "2 sdm saus tomat\n" +
-                        "2 sdm saus Sambal\n" +
-                        "2 sdm saus tiram\n" +
-                        "100 ml air\n" +
-                        "1 cabai merah, iris\n" +
-                        "1 batang daun bawang, iris\n" +
-                        "1 buah bawang bombai, iris\n" +
-                        "1 sdt garam\n" +
-                        "1 sdt gula\n" +
-                        "1/2 sdt merica",
-                description = "1. Pisahkan kepala dan badan cumi, buang kotoran dan tulangnya. Cuci bersih, lalu potong 1-2 cm tergantung ukuran cumi.\n" +
+                dish_name = "Nasi Putih",
+                ingredients = "1,5 liter Beras\n" +
+                        "1 gayung Air",
+                description = "1. Cuci beras dengan air sampai bersih\n" +
                         "\n" +
-                        "2. Rendam cumi dengan baking soda, garam, dan air selama 15-20 menit.\n" +
+                        "2. Masukan beras ke dalam citel isi air, kemudian nyalakan api, masak beras sampai jadi gigih, kemudian angkat gigihnya dan aduk-aduk\n" +
                         "\n" +
-                        "3. Buang air rendaman dan cuci bersih cumi kemudian saring.\n" +
+                        "3. Siapkan langseng diatas kompor gas, isi air sampai mendidih, kemudian masukin kain ke dalam langseng dan isi dengan gigih jika ada nasi sisa kemari nasinya simpan di atas gigih, nasi tertutup semua kain, dan jika mau kukus cabe rawit untuk sambal cabenya bungkus dengan plastik simpan di atas kain, kemudian tutup dengan tutup langseng\n" +
                         "\n" +
-                        "4. Siapkan bumbu halus, blender/ulek cabai keriting, bawang merah, bawang putih, dan minyak hingga halus.\n" +
+                        "4. Angkat nasi dan kipas sambil di aduk-aduk, masukan nasi ke dalam wadah\n" +
                         "\n" +
-                        "5. Tumis bumbu halus masukkan bawang bombai, cabai merah, serai geprek (ikat), daun jeruk, dan jahe geprek.\n" +
-                        "\n" +
-                        "6. Tambahkan air, saus tomat, saus tiram, air asam jawa, dan saus sambal. Aduk rata. Masukkan cumi ke saus, lalu bumbui dengan garam, gula, dan merica. Tambahkan daun bawang, masak sebentar.\n" +
-                        "\n" +
-                        "7. Cumi Saus Padang siap disajikan!",
-                image = R.drawable.cumisauspadang
+                        "5. Nasi siap disajikan",
+                image = R.drawable.nasiputih
             ),
             Dish(
                 id = 14,
@@ -533,31 +515,44 @@ class DishRepository {
             ),
             Dish(
                 id = 18,
-                dish_name = "Sayur Sop",
-                ingredients = "10 butir Telur Puyuh Rebus\n" +
-                        "3 buah Tahu Putih, potong dadu\n" +
-                        "2 buah Wortel, iris\n" +
-                        "1 buah Kentang, potong²\n" +
-                        "1/4 buah Kubis, potong²\n" +
-                        "1 batang Daun Bawang, iris serong\n" +
-                        "1 batang Seledri, iris\n" +
-                        "3 siung Bawang Putih, iris\n" +
-                        "1/2 buah Bawang Bombay, iris\n" +
-                        "1,2 liter Air\n" +
-                        "3 sdm Minyak Goreng\n" +
+                dish_name = "Roti",
+                ingredients = "150 g tepung terigu (aku pakai terigu pro sedang)\n" +
+                        "1/4 sdt garam\n" +
+                        "15 g gula pasir\n" +
+                        "1/2 sdt ragi\n" +
+                        "1/2 sdt SP (optional)\n" +
+                        "15 g Butter Oil Substitute (aku pakai merk ButterSub milky) kalo ga ada pakai margarin aja\n" +
+                        "70 g air dingin",
+                description = "1. Di dalam mangkok campurkan tepung terigu, garam dan gula, aduk rata, lalu tambahkan ragi, aduk rata kembali\n" +
                         "\n" +
-                        "Seasoning:\n" +
-                        "1 1/4 sdt Garam\n" +
-                        "1/2 sdt Kaldu Jamur\n" +
-                        "1/2 sdt Lada",
-                description = "1. Panaskan 1 sdm minyak goreng untuk menumis bawang putih dan bawang bombay hingga harum. Panaskan 2 sdm minyak goreng untuk menggoreng tahu hingga kecoklatan, angkat.\n" +
+                        "2. Selanjutnya tambahkan SP, BOS dan air dingin Note: Kalo mau pakai real Butter \uD83E\uDDC8 sebaiknya dimasukan setelah adonan diulen hingga setengah kalis\n" +
                         "\n" +
-                        "2. Didihkan air lalu masukkan tumisan bawang, wortel, dan kentang. Setelah mendidih kembali, masukkan tahu dan semua seasoning, aduk rata.\n" +
+                        "3. Ulen adonan sampai menyatu dan homogen pakai mikser dengan kecepatan rendah atau kecepatan 1\n" +
                         "\n" +
-                        "3. Terakhir, masukkan kubis dan seledri. Aduk rata, tes rasa lalu angkat.\n" +
+                        "4. Naikan kecepatan mikser ke sedang lalu ulen adonan sampai kalis elastis dan lembut\n" +
                         "\n" +
-                        "4. Sop Bening Tahu Sayuran siap disajikan ♥\uFE0F♥\uFE0F.",
-                image = R.drawable.sayursop
+                        "5. Kurang lebih sampai seperti ini. Kemudian bulatkan adonan dan istirahatkan selama 10-20 menit saja\n" +
+                        "\n" +
+                        "6. Setelah itu bagi-bagi adonan menjadi 10 bagian masing-masing beratnya sekitar 29g\n" +
+                        "\n" +
+                        "7. Rounding adonan\n" +
+                        "\n" +
+                        "8. Lalu pipihkan adonan dengan rolling pin kemudian lipat dua sehingga membentuk setengah lingkaran\n" +
+                        "\n" +
+                        "9. Beri olesan BOS\n" +
+                        "\n" +
+                        "10. Kemudian susun di loyang. Aku pakai loyang ukuran 16x12x5cm\n" +
+                        "\n" +
+                        "11. Adonannya aku proofing selama 50menit, 10menit terakhir panaskan oven ya\n" +
+                        "\n" +
+                        "12. Adonan yg telah di-proofing\n" +
+                        "\n" +
+                        "13. Kemudian dipanggang dengan suhu 180°C selama 10menit pakai api atas bawah\n" +
+                        "\n" +
+                        "14. Beginilah roti sisir yang telah matang, setelah roti sisir matang olesi permukaan atasnya dengan margarin, lalu dinginkan di cooling rak\n" +
+                        "\n" +
+                        "15. Setelah roti gak panas lagi, kemudian roti bisa di belah saja dengan tangan gak mesti dipotong pakai pisau dan siap disantap \uD83D\uDC4D",
+                image = R.drawable.roti
             ),
             Dish(
                 id = 19,
@@ -592,6 +587,268 @@ class DishRepository {
                         "\n" +
                         "6. Setelah matang angkat dan taruh dalam wadah, siram dengan saus kacang, tambahkan sedikit kecap atau bawang goreng Kemudian sajikan.",
                 image = R.drawable.sate
+            ),
+            Dish(
+                id = 20,
+                dish_name = "Sosis",
+                ingredients = "3 buah sosis Besarnya sedang(merk bebas)\n" +
+                        "1 btg daun bawang\n" +
+                        "1 buah baput\n" +
+                        "1/2 sdt saos tiram\n" +
+                        "1 sdt saos tomat\n" +
+                        "1 sdm kecap manis\n" +
+                        "1/2 sdt kecap Inggris\n" +
+                        "1/8 sdt garam\n" +
+                        "1/4 sdt gula pasir\n" +
+                        "100 ml air",
+                description = "1. Siapkan bahan. Belah menjadi 2 sosis, kerat-kerat di salah satu bagian. Iris halus baput\n" +
+                        "\n" +
+                        "2. Tumis baput sampai harum. Tambahkan air, garam,gula pasir, saos tomat,kecap Inggris, kecap manis dan saos tiram. Biarkan mendidih\n" +
+                        "\n" +
+                        "3. Masukkan sosisnya, masak dg api kecil sekitar 7 menit hingga kuah menyusut. Cek rasa. Tambahkan irisan daun bawang. Matikan kompor. Pindahkan ke piring,sajikan. Terimakasih \uD83D\uDE4F",
+                image = R.drawable.sosis
+            ),
+            Dish(
+                id = 21,
+                dish_name = "Soto",
+                ingredients = "1/2 ekor ayam, resep aslinya dada utuh dan paha atas\n" +
+                        "200 ml santan instan+800 ml air\n" +
+                        "300 ml susu cair\n" +
+                        "1 batang serai (geprek)\n" +
+                        "1 ruas lengkuas (geprek)\n" +
+                        "4 lembar daun salam\n" +
+                        "4 lembar daun jeruk) sobek -sobek)\n" +
+                        "3 buah bunga lawang\n" +
+                        "5 butir cengkeh\n" +
+                        "secukupnya Garam, gula pasir dan kaldu ayam\n" +
+                        "\n" +
+                        "☀\uFE0FBumbu halus\n" +
+                        "5 siung bawang merah\n" +
+                        "3 siung bawang putih\n" +
+                        "3 butir kemiri (sangrai)\n" +
+                        "1 ruas jahe\n" +
+                        "1 ruas kunyit\n" +
+                        "1 sdt merica bubuk\n" +
+                        "1/4 sdt pala bubuk, tambahan saya\n" +
+                        "\n" +
+                        "☀\uFE0F Bahan Pelengkap\n" +
+                        "2 buah kentang (potong dadu, goreng)\n" +
+                        "2 buah tomat (potong dadu)\n" +
+                        "2 batang daun bawang (iris)\n" +
+                        "2 butir telur (rebus) tambahan saya\n" +
+                        "Daun seledri (iris)tambahan saya\n" +
+                        "Irisan jeruk nipis, sesuai selera\n" +
+                        "secukupnya Bawang goreng\n" +
+                        "sesuai selera Sambal,",
+                description = "1. Siapkan bumbu, blender hingga halus bersama minyak goreng\n" +
+                        "\n" +
+                        "2. Tumis bumbu halus, bersama daun salam, daun jeruk, serai, lengkuas, bunga lawang dan cengkeh, masak bumbu hingga matang dan harum\n" +
+                        "\n" +
+                        "3. Masukkan santan terlebih dahulu, kemudian ayam masak hingga santan mendidih, hingga ayam bumbu pas Note:saya pindah ke panci, agar mudah mengaduknya dan enak di hangatkan kembali\n" +
+                        "\n" +
+                        "4. Bumbui dengan garam, gula pasir dan kaldu ayam,lalu tuang susu cair masak sampai ayam meresap bumbu dan rasanya pas, angkat Ayam lalu goreng setelah dingin baru Suir-suir Inilah bahan pelengkap bersama sambal sesuai selera\n" +
+                        "\n" +
+                        "5. Siapkan nasi hangat,beri semua bahan pelengkap,lalu tuang kuah sotonya dan bawang goreng,baru siap di nikmati",
+                image = R.drawable.soto
+            ),
+            Dish(
+                id = 22,
+                dish_name = "Steak",
+                ingredients = "secukupnya daging\n" +
+                        "secukupnya wortel, buncis, brokoli (sayuran bebas)\n" +
+                        "\n" +
+                        "Bumbu Daging\n" +
+                        "secukupnya garam, lada bubuk, tepung teigu, tepung maizena\n" +
+                        "4 butir bawang putih geprek\n" +
+                        "secukupnya mentega\n" +
+                        "\n" +
+                        "Brown Sauce\n" +
+                        "secukupnya bawang putih\n" +
+                        "secukupnya air\n" +
+                        "secukupnya saus barbeque lamonte\n" +
+                        "secukupnya saus tomat\n" +
+                        "secukupnya saus sambal (skip kalo gamau pedas)",
+                description = "1. Potong sayur lalu rebus\n" +
+                        "\n" +
+                        "2. Potong daging sesuai selera, gunakan pisau potong menyilang 2 arah\n" +
+                        "\n" +
+                        "3. Balurkan secukupnyabgaram, lada bubuk, tepung terigu tepung maizena ke 2 sisi\n" +
+                        "\n" +
+                        "4. Panaskan teflon, lalu masukkan daging. masak hingga medium\n" +
+                        "\n" +
+                        "5. Tambahkan margarin dan bawang putih geprek\n" +
+                        "\n" +
+                        "6. Jika sekiranya sudah matang, tiriskan dan potong daging agar lebih mudah untuk makan.\n" +
+                        "\n" +
+                        "7. Menggunakan teflon sisa panggan tadi, masukkan bawang putih cincang, beri air, dan masukkan saus barbeque, saus tomat, saus sambal. koreksi rasa. jika sudah pas tinggu air surut dan mengental.",
+                image = R.drawable.steak
+            ),
+            Dish(
+                id = 23,
+                dish_name = "Tahu",
+                ingredients = "300 gr tahu putih, potong segitiga lalu goreng hingga berkulit, sisihkan\n" +
+                        "\n" +
+                        "Bumbu Halus :\n" +
+                        "5 buah cabe merah keriting\n" +
+                        "15 buah cabe rawit merah\n" +
+                        "3 buah bawang merah\n" +
+                        "3 siung bawang putih\n" +
+                        "\n" +
+                        "Bumbu Lainnya :\n" +
+                        "3 lembar daun jeruk\n" +
+                        "1 batang daun bawang, iris\n" +
+                        "1/2 buah bawang bombay, iris kasar\n" +
+                        "2 buah cabe merah keriting, iris serong\n" +
+                        "\n" +
+                        "Bumbu Say :\n" +
+                        "1 sdm saus sambal\n" +
+                        "1/2 sdm saus tomat\n" +
+                        "1 sdm saus tiram\n" +
+                        "2 sdt kecap manis\n" +
+                        "1/2 sdm kecap ikan/kecap asin\n" +
+                        "1 sdm margarin\n" +
+                        "secukupnya Garam\n" +
+                        "250 ml air",
+                description = "1. Tumis bumbu halus bersama daun jeruk, bombay, cabe iris hingga wangi dan matang\n" +
+                        "\n" +
+                        "2. Tambahkan air dan juga bahan saus. Masak hingga mendidih.\n" +
+                        "\n" +
+                        "3. Masukkan tahu, masak hingga bumbu meresap dan tes rasa. Terakhir masukkan daun bawang. Aduk rata dan matikan api",
+                image = R.drawable.tahu
+            ),
+            Dish(
+                id = 24,
+                dish_name = "Telur",
+                ingredients = "6 butir telur\n" +
+                        "Secukup y kaldu jamur\n" +
+                        "Secukup y kaldu bubuk\n" +
+                        "Secukup y gula pasir\n" +
+                        "\n" +
+                        "Bumbu halus\n" +
+                        "4 siung bawang putih\n" +
+                        "5 siung bawang merah\n" +
+                        "1 buah kemiri\n" +
+                        "2 lembar daun jeruk\n" +
+                        "1 shacet bumbu balado (desaku)",
+                description = "1. Pertama rebus dulu telur laku kupas kulit y lanjut goreng telur setenga matang, coper bumbu halus bawang putih bawang merah tomat lalu siapkn mangkok kecil tuang 1 shacet bumbu balado beri air secukup y aduk” sisikan\n" +
+                        "\n" +
+                        "2. Panaskn minyak goreng bumbu halus onseng” sampai susut lalu tmbhkn 1 shacet bumbu balado tambahkan telur saya tmbhkn tahu bisa di skip aduk” damai merata icip rasa tmbhkn kaldu bubuk secukup y kaldu jmur secukup y gula pasir secukup y\n" +
+                        "Bila sudah pas angkat dan sajikan\n" +
+                        "Selamat mencoba \uD83E\uDD0F\uD83E\uDEF6",
+                image = R.drawable.telur
+            ),
+            Dish(
+                id = 25,
+                dish_name = "Tempe",
+                ingredients = "1/4 cecek (beli dimlijo)\n" +
+                        "1 buah tempe (2 ribuan)\n" +
+                        "4 siung Bawang merah\n" +
+                        "2 siung bawang putih\n" +
+                        "1 buah cabe merah besar\n" +
+                        "1 helai Daun bawang\n" +
+                        "1 sdt garam\n" +
+                        "1 sdt gula\n" +
+                        "1 sdm saos tiram\n" +
+                        "3 sdm kecap\n" +
+                        "1 sdt kaldu bubuk\n" +
+                        "secukupnya Micin",
+                description = "1. Rebus cecek terlebih dahulu dan siapkan bahan-bahannya\n" +
+                        "\n" +
+                        "2. Goreng tempe setengah matang\n" +
+                        "\n" +
+                        "3. Tumis bawang merah bawang putih dan cabe kemudian masukkan semua bahan-bahan tadi dioseng-oseng hingga matang dan koreksi rasa",
+                image = R.drawable.tempe
+            ),
+            Dish(
+                id = 26,
+                dish_name = "Terong Balado",
+                ingredients = "2 Buah Terong (potong sesuai selera)\n" +
+                        "1 Papan Tempe (potong kotak2 kecil)\n" +
+                        "1 Batang Daun Pre (dirajang pisahkan batang & Daunnya)\n" +
+                        "3 Siung Bawang Merah (di rajang)\n" +
+                        "2 Lembar Daun Jeruk\n" +
+                        "1 sdt Terasi matang\n" +
+                        "Secukupnya Gula, Garam, Kaldu Jamur & Kecap Manis\n" +
+                        "\n" +
+                        "Bumbu Halus :\n" +
+                        "1 Siung Bawang Putih Besar\n" +
+                        "5 Siung Bawang Merah\n" +
+                        "10 Buah Cabe Kriting Merah\n" +
+                        "1 Buah Tomat Kecil",
+                description = "1. Goreng tempe setengah matang. Tiriskan.\n" +
+                        "\n" +
+                        "2. Siapkan minyak panas, kemudian masukkan bamer rajang & batang daun pre. Tumis hingga harum.\n" +
+                        "\n" +
+                        "3. Selanjutnya masukkan bumbu halus & daun jeruk serta terasi tumis hingga matang. tanda jika sudah matang bumbu halus akan menyusut dan baunya menyengat hingga ingin bersin..\n" +
+                        "\n" +
+                        "4. Setelah bumbu halus matang, masukkan terong & tempe yg sudah di goreng tumis hingga meresap. Saya lebih suka klo terongnya masih agak keras.\n" +
+                        "\n" +
+                        "5. Yg terakhir seasoning, masukkan gula, garam, kaldu jamur & kecap manis secukupnya. Aduk hingga rata, cek rasa. Jgn lupa Masukkan Daun Pre.nya yg sudah di rajang ya.. \uD83D\uDE01\n" +
+                        "\n" +
+                        "6. Terong Balado Siap Di Sajikan \uD83E\uDD70",
+                image = R.drawable.terongbalado
+            ),
+            Dish(
+                id = 27,
+                dish_name = "Tumis Kangkung",
+                ingredients = "2 ikat kangkung\n" +
+                        "4 siung bawang putih\n" +
+                        "1 siung bawang merah\n" +
+                        "1 buah tomat\n" +
+                        "Bumbu penyedap\n" +
+                        "2 sdm saos tiram\n" +
+                        "Minyak\n" +
+                        "Air\n" +
+                        "Cabe merah besar",
+                description = "1. Petik kangkung lalu cuci hingga bersih\n" +
+                        "\n" +
+                        "Potong Bawang merah, Bawang putih, Tomat dan Cabe merah"+
+                        "\n" +
+                        "3. Panaskan minyak lalu masukan bawang merah bawang putih,cabe merah,Tumis hingga wangi lalu masukan kangkung aduk hingga sedikit layu\n" +
+                        "\n" +
+                        "4. Lalu masukan bumbu penyedap (garam,micin,kaldu ayam,gula pasir)dan saos tiram lalu tambahkan air sedikit aduk hingga merata supaya bumbu tercampur,terakhir masukan tomat dirasa bumbu sudah pas angkat lalu sajikan\n" +
+                        "\n" +
+                        "5. Tumis kangkung simpel pun jadi untuk di hidangkan",
+                image = R.drawable.tumiskangkung
+            ),
+            Dish(
+                id = 28,
+                dish_name = "Udang",
+                ingredients = "250 gr udang, buang kepalanya (boleh dikupas, aku enggak)\n" +
+                        "1 bawang bombay\n" +
+                        "3 siung bawang putih, haluskan\n" +
+                        "4 siung bawang merah, haluskan\n" +
+                        "6 cabe rawit\n" +
+                        "1 batang daun bawang\n" +
+                        "1 ruas jahe, geprek\n" +
+                        "1 buah tomat\n" +
+                        "3 sdm kecap manis\n" +
+                        "1 sdm kecap asin\n" +
+                        "1 sdm saus tomat\n" +
+                        "1 sdm kecap inggris\n" +
+                        "1 sdm saus tiram\n" +
+                        "1 sdt minyak wijen\n" +
+                        "4 sdm Margarin",
+                description = "1. Cuci udang buang kepalanya (boleh dikupas, aku enggak).\n" +
+                        "\n" +
+                        "2. Ulek halus bawang putih dan bawang merah.\n" +
+                        "\n" +
+                        "3. Iris² bawang bombay, cabe rawit dan daun bawang.\n" +
+                        "\n" +
+                        "4. Untuk tomat buang bijinya agar tidak berair, lalu potong kotak².\n" +
+                        "\n" +
+                        "5. Lelehkan margarin di pan, masak udang setengah matang dengan api besar, lalu angkat dan sisihkan.\n" +
+                        "\n" +
+                        "6. Tunggu hingga kandungan air udang di margarin habis, lalu masukkan bumbu halus, bawang bombay, cabe rawit, jahe, tomat dan bagian putih daun bawang, tumis hingga wangi.\n" +
+                        "\n" +
+                        "7. Setelah wangi, masukkan kecap manis, kecap asin, saus tiram, kecap inggris\n" +
+                        "\n" +
+                        "8. Koreksi rasa dulu jika kurang asin atau kurang apa, baru masukkan udangnya terakhir masukkan daun bawang bagian hijau.\n" +
+                        "\n" +
+                        "9. Udang saus mentega siap disajikan, happy cooking☺\n" +
+                        "\n" +
+                        "Untuk masakan ini harus langsung habis ya, kalo enggak tekstur saus dari margarinnya bakalan ngegumpal!",
+                image = R.drawable.udang
             ),
         )
     }
