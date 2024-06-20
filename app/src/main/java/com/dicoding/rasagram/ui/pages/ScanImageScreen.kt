@@ -37,16 +37,22 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import coil.compose.rememberAsyncImagePainter
 import com.dicoding.rasagram.R
+import com.dicoding.rasagram.data.repository.DishRepository
+import com.dicoding.rasagram.ui.service.ImageClassifierHelper
+import com.dicoding.rasagram.ui.service.Screens
 import com.dicoding.rasagram.ui.theme.Orange
 import java.io.File
 import java.nio.ByteBuffer
@@ -56,6 +62,8 @@ import java.util.Date
 import java.util.Objects
 
 // Function to resize image
+
+
 fun resizeImage(image: Bitmap, targetWidth: Int, targetHeight: Int): Bitmap {
     return Bitmap.createScaledBitmap(image, targetWidth, targetHeight, true)
 }
@@ -85,10 +93,16 @@ fun ScanImagePage(
 ) {
     val context = LocalContext.current
     val file = context.createImageFile()
+    val dishRepository = DishRepository()
     val uri = FileProvider.getUriForFile(
         Objects.requireNonNull(context),
         context.packageName + ".provider", file
     )
+
+    fun findDishIdByDishName(dishName: String): Int? {
+        val dishes = dishRepository.getAllData()
+        return dishes.find { it.dish_name.equals(dishName, ignoreCase = true) }?.id
+    }
 
     var captureImageUri by remember {
         mutableStateOf<Uri>(Uri.EMPTY)
@@ -152,20 +166,17 @@ fun ScanImagePage(
                     .fillMaxHeight(0.5f),
                 contentAlignment = Alignment.Center
             ) {
-                if (resizedImageBitmap != null) {
-                    Image(
-                        bitmap = resizedImageBitmap!!.asImageBitmap(),
-                        contentDescription = null
-                    )
-                } else if (captureImageUri.toString().isNotEmpty()) {
+                if (captureImageUri.toString().isNotEmpty()) {
                     Image(
                         painter = rememberAsyncImagePainter(model = captureImageUri),
-                        contentDescription = null
+                        contentDescription = null,
+                        contentScale = ContentScale.Fit
                     )
                 } else if (selectedImageUri != null) {
                     Image(
                         painter = rememberAsyncImagePainter(model = selectedImageUri),
-                        contentDescription = null
+                        contentDescription = null,
+                        contentScale = ContentScale.Fit
                     )
                 } else {
                     Image(painter = painterResource(id = R.drawable.scan), contentDescription = null)
@@ -225,100 +236,26 @@ fun ScanImagePage(
             Spacer(modifier = Modifier.height(48.dp))
             Button(
                 onClick = {
-<<<<<<< Updated upstream
-//                    resizedImageBitmap?.let { resizedBitmap ->
-//                        val classifier = ImageClassifierHelper(context)
-//                        val result = classifier.classify(resizedBitmap)
-//                        println("Classification result: $result")
-//                        Toast.makeText(context, "Classification result: $result", Toast.LENGTH_LONG).show()
-//                    } ?: run {
-//                        Toast.makeText(context, "Please select or capture an image first", Toast.LENGTH_LONG).show()
-//                    }
-
-//                    when (viewModel.clickCount.value) {
-//                        0 -> {
-//                            navController.navigate("${Screens.DetailResepScreen.route}/0")
-//                        }
-//                        1 -> {
-//                            navController.navigate("${Screens.DetailResepScreen.route}/1")
-//                        }
-//                        2 -> {
-//                            navController.navigate("${Screens.DetailResepScreen.route}/2")
-//                        }
-//                        3 -> {
-//                            navController.navigate("${Screens.DetailResepScreen.route}/3")
-//                        }
-//                        4 -> {
-//                            navController.navigate("${Screens.DetailResepScreen.route}/4")
-//                        }
-//                        5 -> {
-//                            navController.navigate("${Screens.DetailResepScreen.route}/5")
-//                        }
-//                        6 -> {
-//                            navController.navigate("${Screens.DetailResepScreen.route}/6")
-//                        }
-//                        7 -> {
-//                            navController.navigate("${Screens.DetailResepScreen.route}/7")
-//                        }
-//                        8 -> {
-//                            navController.navigate("${Screens.DetailResepScreen.route}/8")
-//                        }
-//                        9 -> {
-//                            navController.navigate("${Screens.DetailResepScreen.route}/9")
-//                        }
-//                        10 -> {
-//                            navController.navigate("${Screens.DetailResepScreen.route}/10")
-//                        }
-//                        11 -> {
-//                            navController.navigate("${Screens.DetailResepScreen.route}/11")
-//                        }
-//                        12 -> {
-//                            navController.navigate("${Screens.DetailResepScreen.route}/12")
-//                        }
-//                        13 -> {
-//                            navController.navigate("${Screens.DetailResepScreen.route}/13")
-//                        }
-//                        14 -> {
-//                            navController.navigate("${Screens.DetailResepScreen.route}/14")
-//                        }
-//                        15 -> {
-//                            navController.navigate("${Screens.DetailResepScreen.route}/15")
-//                        }
-//                        16 -> {
-//                            navController.navigate("${Screens.DetailResepScreen.route}/16")
-//                        }
-//                        17 -> {
-//                            navController.navigate("${Screens.DetailResepScreen.route}/17")
-//                        }
-//                        18 -> {
-//                            navController.navigate("${Screens.DetailResepScreen.route}/18")
-//                        }
-//                        19 -> {
-//                            navController.navigate("${Screens.DetailResepScreen.route}/19")
-//                        }
-//                    }
-//                    viewModel.incrementClickCount()
-
-=======
                     resizedImageBitmap?.let { resizedBitmap ->
                         val classifier = ImageClassifierHelper(context)
                         val byteBuffer = convertBitmapToByteBuffer(resizedBitmap)
                         val (result,_) = classifier.classify(byteBuffer)
                         println("Classification result: $result")
-                        Toast.makeText(context, "Classification result: $result", Toast.LENGTH_LONG).show()
+
+                        val dishId = findDishIdByDishName(result)
+                        if (dishId != null) {
+                            // Navigate to DetailResepScreen with dishId
+                            Toast.makeText(context, "Classification result: $result", Toast.LENGTH_LONG).show()
+                            navController.navigate("${Screens.DetailResepScreen.route}/$dishId")
+                        } else {
+                            Toast.makeText(context, "Dish not found", Toast.LENGTH_LONG).show()
+                        }
+
+
                     } ?: run {
                         Toast.makeText(context, "Please select or capture an image first", Toast.LENGTH_LONG).show()
                     }
-//                    when (viewModel.clickCount.value) {
-//                        0 -> {
-//                            navController.navigate("${Screens.DetailResepScreen.route}/1")
-//                        }
-//                        1 -> {
-//                            navController.navigate("${Screens.DetailResepScreen.route}/2")
-//                        }
-//                    }
-//                    viewModel.incrementClickCount()
->>>>>>> Stashed changes
+
                 },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -353,8 +290,8 @@ fun Context.createImageFile(): File {
 
 
 
-//@Preview(showBackground = true, showSystemUi = true)
-//@Composable
-//fun ScanImagePagePreview() {
-//    ScanImagePage(navController = rememberNavController(), sharedPreferences = sharedPreferences)
-//}
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+fun ScanImagePagePreview() {
+    ScanImagePage(navController = rememberNavController())
+}

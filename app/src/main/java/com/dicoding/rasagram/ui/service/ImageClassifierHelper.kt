@@ -15,7 +15,7 @@ class ImageClassifierHelper(context: Context) {
     private val labels = arrayOf(
         "Ayam Bakar", "Ayam Goreng", "Bakso", "Bakwan", "Batagor",
         "Bihun", "Capcay", "Gado-Gado", "Ikan Goreng", "Kerupuk",
-        "Martabak Telur", "Mie", "Nasi Goreng", "Nasi Putih",
+        "Martabak Telur", "Mie Goreng", "Nasi Goreng", "Nasi Putih",
         "Nugget", "Opor Ayam", "Pempek", "Rendang", "Roti",
         "Sate", "Sosis", "Soto", "Steak", "Tahu", "Telur",
         "Tempe", "Terong Balado", "Tumis Kangkung", "Udang"
