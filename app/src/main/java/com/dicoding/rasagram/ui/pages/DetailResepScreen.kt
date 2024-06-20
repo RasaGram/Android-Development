@@ -202,7 +202,7 @@ fun DetailResepScreen(navController: NavHostController, dishId : Int) {
                         contentColor = Color.White
                     )
                 ) {
-                    Text("Cek Watung Terdekat")
+                    Text("Cek Warung Terdekat")
                 }
             }
         }
