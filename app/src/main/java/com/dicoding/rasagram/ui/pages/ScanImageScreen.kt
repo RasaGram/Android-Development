@@ -49,37 +49,33 @@ import coil.compose.rememberAsyncImagePainter
 import com.dicoding.rasagram.R
 import com.dicoding.rasagram.ui.theme.Orange
 import java.io.File
+import java.nio.ByteBuffer
+import java.nio.ByteOrder
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Objects
 
-fun resizeImage(imagePath: String, targetWidth: Int, targetHeight: Int): Bitmap {
-    val options = BitmapFactory.Options().apply {
-        inJustDecodeBounds = true
-    }
-    BitmapFactory.decodeFile(imagePath, options)
-
-    options.inSampleSize = calculateInSampleSize(options, targetWidth, targetHeight)
-    options.inJustDecodeBounds = false
-
-    val originalBitmap = BitmapFactory.decodeFile(imagePath, options)
-    return Bitmap.createScaledBitmap(originalBitmap, targetWidth, targetHeight, true)
+// Function to resize image
+fun resizeImage(image: Bitmap, targetWidth: Int, targetHeight: Int): Bitmap {
+    return Bitmap.createScaledBitmap(image, targetWidth, targetHeight, true)
 }
 
+// Function to convert Bitmap to ByteBuffer
+fun convertBitmapToByteBuffer(bitmap: Bitmap): ByteBuffer {
+    val inputSize = 224 // Expected input size
+    val byteBuffer = ByteBuffer.allocateDirect(4 * inputSize * inputSize * 3)
+    byteBuffer.order(ByteOrder.nativeOrder())
 
-fun calculateInSampleSize(options: BitmapFactory.Options, reqWidth: Int, reqHeight: Int): Int {
-    val (height: Int, width: Int) = options.run { outHeight to outWidth }
-    var inSampleSize = 1
+    val intValues = IntArray(inputSize * inputSize)
+    bitmap.getPixels(intValues, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
 
-    if (height > reqHeight || width > reqWidth) {
-        val halfHeight: Int = height / 2
-        val halfWidth: Int = width / 2
-
-        while (halfHeight / inSampleSize >= reqHeight && halfWidth / inSampleSize >= reqWidth) {
-            inSampleSize *= 2
-        }
+    intValues.forEach { pixelValue ->
+        byteBuffer.putFloat(((pixelValue shr 16) and 0xFF) / 255.0f)
+        byteBuffer.putFloat(((pixelValue shr 8) and 0xFF) / 255.0f)
+        byteBuffer.putFloat((pixelValue and 0xFF) / 255.0f)
     }
-    return inSampleSize
+
+    return byteBuffer
 }
 
 @Composable
@@ -105,7 +101,7 @@ fun ScanImagePage(
     val cameraLauncher = rememberLauncherForActivityResult(ActivityResultContracts.TakePicture()) {
         if (it) {
             captureImageUri = uri
-            val resizedBitmap = resizeImage(file.path, 224, 224)
+            val resizedBitmap = resizeImage(BitmapFactory.decodeFile(file.path), 224, 224)
             resizedImageBitmap = resizedBitmap
         }
     }
@@ -128,6 +124,14 @@ fun ScanImagePage(
         contract = ActivityResultContracts.PickVisualMedia(),
         onResult = { uri ->
             selectedImageUri = uri
+
+            // Convert the URI to a Bitmap and resize it
+            uri?.let {
+                context.contentResolver.openInputStream(it)?.use { inputStream ->
+                    val originalBitmap = BitmapFactory.decodeStream(inputStream)
+                    resizedImageBitmap = resizeImage(originalBitmap, 224, 224)
+                }
+            }
         }
     )
 
@@ -221,6 +225,7 @@ fun ScanImagePage(
             Spacer(modifier = Modifier.height(48.dp))
             Button(
                 onClick = {
+<<<<<<< Updated upstream
 //                    resizedImageBitmap?.let { resizedBitmap ->
 //                        val classifier = ImageClassifierHelper(context)
 //                        val result = classifier.classify(resizedBitmap)
@@ -294,6 +299,26 @@ fun ScanImagePage(
 //                    }
 //                    viewModel.incrementClickCount()
 
+=======
+                    resizedImageBitmap?.let { resizedBitmap ->
+                        val classifier = ImageClassifierHelper(context)
+                        val byteBuffer = convertBitmapToByteBuffer(resizedBitmap)
+                        val (result,_) = classifier.classify(byteBuffer)
+                        println("Classification result: $result")
+                        Toast.makeText(context, "Classification result: $result", Toast.LENGTH_LONG).show()
+                    } ?: run {
+                        Toast.makeText(context, "Please select or capture an image first", Toast.LENGTH_LONG).show()
+                    }
+//                    when (viewModel.clickCount.value) {
+//                        0 -> {
+//                            navController.navigate("${Screens.DetailResepScreen.route}/1")
+//                        }
+//                        1 -> {
+//                            navController.navigate("${Screens.DetailResepScreen.route}/2")
+//                        }
+//                    }
+//                    viewModel.incrementClickCount()
+>>>>>>> Stashed changes
                 },
                 modifier = Modifier
                     .fillMaxWidth()
