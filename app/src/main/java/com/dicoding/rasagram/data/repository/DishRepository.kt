@@ -561,7 +561,7 @@ class DishRepository {
             ),
             Dish(
                 id = 19,
-                dish_name = "Sate Ayam",
+                dish_name = "Sate",
                 ingredients = "1/2 kg ayam fillet\n" +
                         "Secukupnya tusuk sate\n" +
                         "\n" +

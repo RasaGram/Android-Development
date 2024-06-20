@@ -251,7 +251,7 @@ fun ScanImagePage(
                             Toast.makeText(context, "Dish not found", Toast.LENGTH_LONG).show()
                         }
 
-
+//test
                     } ?: run {
                         Toast.makeText(context, "Please select or capture an image first", Toast.LENGTH_LONG).show()
                     }

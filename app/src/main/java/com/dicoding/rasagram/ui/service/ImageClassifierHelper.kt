@@ -22,13 +22,10 @@ class ImageClassifierHelper(context: Context) {
     )
 
     fun classify(byteBuffer: ByteBuffer): Pair<String, Float> {
-        // Create input buffer for the model, assuming input shape (1, 224, 224, 3)
         val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 224, 224, 3), DataType.FLOAT32)
 
-        // Load the provided ByteBuffer into the TensorBuffer
         inputFeature0.loadBuffer(byteBuffer)
-
-        // Run model inference and get the result
+        
         val outputs = model.process(inputFeature0)
         val outputFeature0 = outputs.outputFeature0AsTensorBuffer
 
