@@ -178,7 +178,7 @@ fun HomepageScreen(navController: NavHostController,viewModel : SignInViewModel=
             }
             LazyColumn(
                 modifier = Modifier.fillMaxHeight().padding(top=5.dp),
-                contentPadding = PaddingValues(start = 16.dp, top = 16.dp, end = 16.dp, bottom = 96.dp),
+                contentPadding = PaddingValues(start = 16.dp, top = 16.dp, end = 16.dp, bottom = 16.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 items(items = getAllData.filter { it.dish_name.contains(searchText, ignoreCase = true) }) { dish ->

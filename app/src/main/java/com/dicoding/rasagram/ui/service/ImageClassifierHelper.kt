@@ -15,7 +15,7 @@ class ImageClassifierHelper(context: Context) {
     private val labels = arrayOf(
         "Ayam Bakar", "Ayam Goreng", "Bakso", "Bakwan", "Batagor",
         "Bihun", "Capcay", "Gado-Gado", "Ikan Goreng", "Kerupuk",
-        "Martabak Telur", "Mie Goreng", "Nasi Goreng", "Nasi Putih",
+        "Martabak Telur", "Mie", "Nasi Goreng", "Nasi Putih",
         "Nugget", "Opor Ayam", "Pempek", "Rendang", "Roti",
         "Sate", "Sosis", "Soto", "Steak", "Tahu", "Telur",
         "Tempe", "Terong Balado", "Tumis Kangkung", "Udang"
@@ -25,7 +25,7 @@ class ImageClassifierHelper(context: Context) {
         val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 224, 224, 3), DataType.FLOAT32)
 
         inputFeature0.loadBuffer(byteBuffer)
-        
+
         val outputs = model.process(inputFeature0)
         val outputFeature0 = outputs.outputFeature0AsTensorBuffer
 

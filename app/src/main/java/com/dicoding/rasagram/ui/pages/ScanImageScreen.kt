@@ -170,13 +170,13 @@ fun ScanImagePage(
                     Image(
                         painter = rememberAsyncImagePainter(model = captureImageUri),
                         contentDescription = null,
-                        contentScale = ContentScale.Fit
+                        contentScale = ContentScale.FillBounds
                     )
                 } else if (selectedImageUri != null) {
                     Image(
                         painter = rememberAsyncImagePainter(model = selectedImageUri),
                         contentDescription = null,
-                        contentScale = ContentScale.Fit
+                        contentScale = ContentScale.FillBounds
                     )
                 } else {
                     Image(painter = painterResource(id = R.drawable.scan), contentDescription = null)
